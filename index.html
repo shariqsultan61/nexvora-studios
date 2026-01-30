@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Nexovra Studios - Premium digital design services including Logos, Stream Overlays, Banners, and Websites for creators.">
   <meta name="keywords" content="Design, Stream Overlays, Logos, Branding, Web Development, Nexovra">
@@ -11,11 +11,11 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Nexovra Studios | Premium Digital Design">
   <meta property="og:description" content="Building strong visual identities for streamers, creators, and brands.">
-  
-  <title>Nexovra Studios | Premium Digital Design</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+ 
+
+  <title>Nexovra Studio’s | Premium Digital Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <style>
     /* ================= ROOT / THEME ================= */
     :root {
@@ -27,6 +27,7 @@
       --text-muted: rgba(255, 255, 255, 0.7);
       --nav-bg: rgba(20, 20, 40, 0.6);
       --blur-val: 16px;
+      /* High Blur for Dark Mode */
       --grad: linear-gradient(90deg, #00ffff, #7f00ff);
       --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
       --glow-color: rgba(0, 255, 255, 0.3);
@@ -40,8 +41,10 @@
       --card-border: rgba(0, 0, 0, 0.05);
       --text: #1a1a1a;
       --text-muted: #555555;
+      /* Reduced Opacity and Blur for cleaner Light Mode */
       --nav-bg: rgba(255, 255, 255, 0.6);
       --blur-val: 8px;
+      /* Kam blur light mode ke liye */
       --shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1);
       --glow-color: rgba(127, 0, 255, 0.4);
     }
@@ -51,14 +54,13 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      /* GPU Acceleration hints */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     html {
       scroll-behavior: smooth;
-      /* Fixes anchor links hiding behind navbar */
-      scroll-padding-top: 100px;
     }
 
     /* Custom Scrollbar */
@@ -134,10 +136,12 @@
         opacity: 0;
         transform: scale(0.8) translateY(20px);
       }
+
       50% {
         opacity: 1;
         transform: scale(1) translateY(0);
       }
+
       100% {
         opacity: 0;
         transform: scale(1.1);
@@ -158,6 +162,7 @@
       justify-content: space-between;
       align-items: center;
       background: var(--nav-bg);
+      /* Using variable blur value */
       backdrop-filter: blur(var(--blur-val));
       -webkit-backdrop-filter: blur(var(--blur-val));
       border: 1px solid var(--card-border);
@@ -210,10 +215,12 @@
       box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
       min-width: 110px;
+      /* Fixed width to prevent jumping when text changes */
     }
 
     body.light #themeBtn {
       box-shadow: 0 4px 15px rgba(127, 0, 255, 0.3);
+      /* Different shadow for light mode */
     }
 
     #themeBtn:active {
@@ -247,7 +254,9 @@
       margin: auto;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       font-weight: 800;
       line-height: 1.2;
     }
@@ -271,12 +280,14 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      /* Using a linear gradient overlay to ensure text readability */
       background: linear-gradient(rgba(5, 5, 16, 0.6), rgba(5, 5, 16, 0.8)),
         url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       will-change: transform;
+      /* Optimizes fixed background */
     }
 
     .hero h1 {
@@ -315,15 +326,19 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      /* Optimized Transition */
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
         box-shadow 0.4s ease,
         border-color 0.4s ease;
       position: relative;
       overflow: hidden;
       backface-visibility: hidden;
+      /* Reduces flicker */
       transform: translate3d(0, 0, 0);
+      /* Force GPU */
     }
 
+    /* Hover effect handled by JS physics, fallback here */
     .card:hover {
       border-color: rgba(0, 255, 255, 0.3);
       box-shadow: var(--shadow);
@@ -352,6 +367,7 @@
       background: #000;
     }
 
+    /* Workflow specific */
     .workflow-icon {
       width: 60px;
       height: 60px;
@@ -517,7 +533,7 @@
       transform: scale(1.05);
     }
 
-    /* ================= CURSOR GLOW ================= */
+    /* ================= CURSOR GLOW (Optimized) ================= */
     .cursor-glow {
       position: fixed;
       width: 400px;
@@ -526,6 +542,7 @@
       pointer-events: none;
       background: radial-gradient(circle, var(--glow-color), transparent 60%);
       mix-blend-mode: screen;
+      /* Initial state centered but hidden */
       top: 0;
       left: 0;
       transform: translate3d(-50%, -50%, 0);
@@ -533,8 +550,10 @@
       opacity: 0;
       transition: opacity 0.5s ease;
       will-change: transform;
+      /* Important for performance */
     }
 
+    /* Hide custom cursor logic on touch */
     @media (hover: none) {
       .cursor-glow {
         display: none;
@@ -590,6 +609,7 @@
           opacity: 0;
           transform: translateY(-10px);
         }
+
         to {
           opacity: 1;
           transform: translateY(0);
@@ -631,7 +651,7 @@
   <div class="cursor-glow"></div>
 
   <div id="loader">
-    <h1>Welcome to<br><span>Nexovra Studios</span></h1>
+    <h1>Welcome to<br><span>Nexovra Studio’s</span></h1>
   </div>
 
   <div id="popup">
@@ -643,13 +663,14 @@
   </div>
 
   <nav>
-    <a href="#" class="logo">Nexovra Studios</a>
+    <a href="#" class="logo">Nexovra Studio’s</a>
     <div id="nav-links">
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="#" class="coming">App Dev</a>
-      <a href="#" class="coming">Web Dev</a>
+      <a href="#" class="coming">Apps Dev</a>
+      <a href="#" class="coming">Websites Dev</a>
       <button id="themeBtn">Light Mode</button>
+
     </div>
     <div id="nav-toggle">
       <span></span>
@@ -680,7 +701,7 @@
           <p>Headers for Twitch, X, and YT.</p>
         </div>
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Emote" class="service-icon">
+          <img src="icons8-pogchamp-48.png" alt="Emote" class="service-icon">
           <h3>Custom Emotes</h3>
           <p>Expressive chat assets.</p>
         </div>
@@ -690,7 +711,7 @@
           <p>Alerts, Stingers & Intros.</p>
         </div>
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Overlay" class="service-icon">
+          <img src="icons8-overlay-94.png" alt="Overlay" class="service-icon">
           <h3>Overlays</h3>
           <p>In-game & Just Chatting screens.</p>
         </div>
@@ -708,37 +729,39 @@
       <h2>Our Portfolio</h2>
       <div class="grid">
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1626785774573-4b799314346d?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Mascot Logos">
+          <img src="tq.jpg" class="portfolio-img" alt="Mascot Logos">
           <h3>Mascot Logos</h3>
         </div>
 
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Banners">
+          <img src="ozzy_banner..jpg" class="portfolio-img" alt="Banners">
           <h3>Banners</h3>
         </div>
 
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Emotes">
+          <img src="emote.jpeg" class="portfolio-img" alt="Emotes">
           <h3>Emote Packs</h3>
         </div>
 
         <div class="card">
-          <video class="portfolio-img" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop">
-            <source src="https://static.videezy.com/system/resources/previews/000/039/223/original/52_29_08_19.mp4" type="video/mp4">
-            </video>
+          <video class="portfolio-img" autoplay muted loop playsinline
+            poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop">
+            <source src="004 - Copy.mp4" type="video/mp4">
+          </video>
           <h3>Animated Emotes</h3>
         </div>
 
         <div class="card">
-          <video class="portfolio-img" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop">
-            <source src="https://static.videezy.com/system/resources/previews/000/051/878/original/abstract_neon_background.mp4" type="video/mp4">
+          <video class="portfolio-img" autoplay muted loop playsinline
+            poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop">
+            <source src="Dr_Cowardly_Work_Overlays.mp4" type="video/mp4">
           </video>
           <h3>Animated Overlays</h3>
         </div>
 
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Stream Package">
-          <h3>Character Arts</h3>
+          <img src="fa1e15225377815.681bf7f28511d.jpg" class="portfolio-img" alt="Stream Package">
+          <h3>Furry Arts</h3>
         </div>
       </div>
     </div>
@@ -748,7 +771,7 @@
     <div class="container">
       <div class="split-section">
         <div class="split-content">
-          <h2>Why Nexovra Studios?</h2>
+          <h2>Why Nexovra Studio’s?</h2>
           <p>
             We build strong visual identities for streamers, creators, and brands.
             Every project is crafted with precision, creativity, and modern design principles.
@@ -758,7 +781,7 @@
           </p>
         </div>
         <div class="split-image">
-          <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop" alt="Office Studio Work">
+          <img src="Image_fx (2).png" alt="Office Studio Work">
         </div>
       </div>
     </div>
@@ -774,12 +797,12 @@
           <p>Analyzing your niche & goals.</p>
         </div>
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" class="workflow-icon" alt="Concept">
+          <img src="icons8-concept-64.png" class="workflow-icon" alt="Concept">
           <h3>2. Concept</h3>
           <p>Sketching initial layouts.</p>
         </div>
         <div class="card">
-          <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" class="workflow-icon" alt="Design">
+          <img src="icons8-design-64.png" class="workflow-icon" alt="Design">
           <h3>3. Design</h3>
           <p>Digital illustration & polish.</p>
         </div>
@@ -800,20 +823,20 @@
   </section>
 
   <footer class="minimal-footer">
-    <h2><span>Nexovra</span> Studios</h2>
+    <h2><span>Nexovra</span> Studio's</h2>
     <p>
       Crafting logos, overlays,
       branding, websites & apps for modern creators.
     </p>
     <div class="footer-social">
-      <a href="https://www.instagram.com/nexovra_studio?igsh=ZW93aDczcWoxaGY4" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/share/17kjQojSUK/" target="_blank">Facebook</a>
-      <a href="https://www.linkedin.com/company/shariqindustries/" target="_blank">LinkedIn</a>
-      <a href="https://x.com/nexovrastudios" target="_blank">X (Twitter)</a>
+      <a href="https://www.instagram.com/nexovra_studio?igsh=ZW93aDczcWoxaGY4">Instagram</a>
+      <a href="https://www.facebook.com/share/17kjQojSUK/">Facebook</a>
+      <a href="https://www.linkedin.com/company/shariqindustries/">LinkedIn</a>
+      <a href="https://x.com/nexovrastudios">X (Twitter)</a>
     </div>
     <p class="footer-copy">© 2017-2026 Nexovra Studios. All Rights Reserved.
-      <br>
-      All content available on this website, including but not limited to text, graphics, logos, brand identity elements, UI/UX designs, illustrations, animations, videos, layouts, digital assets, and creative materials, is the exclusive intellectual property of Nexovra Studios, unless otherwise stated.</p>
+
+All content available on this website, including but not limited to text, graphics, logos, brand identity elements, UI/UX designs, illustrations, animations, videos, layouts, digital assets, and creative materials, is the exclusive intellectual property of Nexovra Studios, unless otherwise stated.</p>
     <p style="font-size: 1.0rem; opacity: 1.0 ;">Made with ❤️ by Nexovra Studios</p>
     <p style="font-size: 1.0rem; opacity: 0.5;">version 1.0.0</p>
   </footer>
@@ -821,6 +844,7 @@
   <script>
     /* =========================================================
        PREMIUM PERFORMANCE ENGINE (240Hz+ Optimized)
+       Uses requestAnimationFrame for fluid render loop.
        =========================================================
     */
 
@@ -831,10 +855,10 @@
     const themeBtn = document.getElementById("themeBtn");
 
     // Physics State
-    let mouse = { x: 0, y: 0 };
-    let cursor = { x: 0, y: 0 };
+    let mouse = { x: 0, y: 0 }; // Raw mouse position
+    let cursor = { x: 0, y: 0 }; // Interpolated cursor position (Lag effect)
 
-    // Magnetic Elements Map
+    // Magnetic Elements Map (to store state for each element independently)
     const magnets = Array.from(magneticElements).map(el => ({
       element: el,
       x: 0,
@@ -843,77 +867,81 @@
       rect: null
     }));
 
-    /* --- THEME LOGIC (WITH PERSISTENCE) --- */
-    // Check localStorage immediately
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light');
-      themeBtn.innerText = "Dark Mode";
-    }
-
-    themeBtn.onclick = () => {
-      document.body.classList.toggle("light");
-
-      if (document.body.classList.contains("light")) {
-        themeBtn.innerText = "Dark Mode";
-        localStorage.setItem('theme', 'light');
-      } else {
-        themeBtn.innerText = "Light Mode";
-        localStorage.setItem('theme', 'dark');
-      }
-    };
-
     /* --- EVENTS --- */
+
+    // 1. Efficient Mouse Tracking (No layout thrashing here)
     window.addEventListener("mousemove", (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+
+      // Reveal glow once mouse moves
       if (glow.style.opacity === '0') glow.style.opacity = '0.6';
     });
 
     if (!isTouch) {
+      // 2. Magnetic Triggering
       magnets.forEach(mag => {
         mag.element.addEventListener("mouseenter", () => {
           mag.rect = mag.element.getBoundingClientRect();
           mag.active = true;
+          // Disable CSS transition for instant JS physics
           mag.element.style.transition = "none";
         });
 
         mag.element.addEventListener("mouseleave", () => {
           mag.active = false;
+          // Re-enable transition for smooth snap back
           mag.element.style.transition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease";
           mag.element.style.transform = "translate3d(0, 0, 0)";
         });
       });
     }
 
-    /* --- ANIMATION LOOP --- */
+    /* --- ANIMATION LOOP (The Heart of Smoothness) --- */
+
+    // Lerp function (Linear Interpolation)
     const lerp = (start, end, factor) => start + (end - start) * factor;
 
     function animate() {
+      // 1. Smooth Cursor Glow (Lag Factor: 0.15)
       cursor.x = lerp(cursor.x, mouse.x, 0.15);
       cursor.y = lerp(cursor.y, mouse.y, 0.15);
 
+      // Use translate3d for GPU composition
       glow.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
 
+      // 2. Magnetic Buttons Physics
       if (!isTouch) {
         magnets.forEach(mag => {
           if (mag.active && mag.rect) {
-            const targetX = (mouse.x - (mag.rect.left + mag.rect.width / 2)) * 0.2;
+            // Calculate distance from center
+            const targetX = (mouse.x - (mag.rect.left + mag.rect.width / 2)) * 0.2; // Strength 0.2
             const targetY = (mouse.y - (mag.rect.top + mag.rect.height / 2)) * 0.2;
+
+            // Apply Lerp to magnet movement as well
             mag.x = lerp(mag.x, targetX, 0.2);
             mag.y = lerp(mag.y, targetY, 0.2);
+
             mag.element.style.transform = `translate3d(${mag.x}px, ${mag.y}px, 0)`;
           } else {
+            // Reset internal coordinates when not active
             mag.x = 0;
             mag.y = 0;
           }
         });
       }
+
+      // Loop infinitely at monitor refresh rate
       requestAnimationFrame(animate);
     }
+
+    // Start Loop
     animate();
 
-    /* --- UTILITIES --- */
+
+    /* --- STANDARD UTILITIES (Logic unchanged, just optimized) --- */
+
+    /* PRELOADER */
     window.addEventListener("load", () => {
       document.body.classList.remove("force-light-text");
       const loader = document.getElementById("loader");
@@ -923,6 +951,19 @@
       }, 2200);
     });
 
+    /* THEME SWITCHER - FIXED LOGIC */
+    themeBtn.onclick = () => {
+      document.body.classList.toggle("light");
+
+      // Update Button Text
+      if (document.body.classList.contains("light")) {
+        themeBtn.innerText = "Dark Mode";
+      } else {
+        themeBtn.innerText = "Light Mode";
+      }
+    };
+
+    /* POPUP LOGIC */
     const popup = document.getElementById("popup");
     const closeBtn = document.getElementById("close");
 
@@ -941,6 +982,7 @@
       if (e.target === popup) popup.classList.remove("active");
     }
 
+    /* NAV TOGGLE Mobile */
     const navToggle = document.getElementById("nav-toggle");
     const navLinks = document.getElementById("nav-links");
 
@@ -948,14 +990,6 @@
       navToggle.classList.toggle("active");
       navLinks.classList.toggle("active");
     };
-    
-    // Close mobile nav when clicking a link
-    document.querySelectorAll("#nav-links a").forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove("active");
-            navLinks.classList.remove("active");
-        });
-    });
   </script>
 </body>
 
