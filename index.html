@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexovra Studios - Premium digital design services including Logos, Stream Overlays, Banners, and Websites for creators.">
+  <meta name="keywords" content="Design, Stream Overlays, Logos, Branding, Web Development, Nexovra">
+  <meta name="author" content="Nexovra Studios">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nexovra Studios | Premium Digital Design">
+  <meta property="og:description" content="Building strong visual identities for streamers, creators, and brands.">
+  
+  <title>Nexovra Studios | Premium Digital Design</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ================= ROOT / THEME ================= */
+    :root {
+      /* Dark Theme (Default) */
+      --bg: #050510;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.05);
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --nav-bg: rgba(20, 20, 40, 0.6);
+      --blur-val: 16px;
+      --grad: linear-gradient(90deg, #00ffff, #7f00ff);
+      --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+      --glow-color: rgba(0, 255, 255, 0.3);
+      --btn-text: #ffffff;
+    }
+
+    body.light {
+      /* Light Theme Overrides */
+      --bg: #f0f2f5;
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.05);
+      --text: #1a1a1a;
+      --text-muted: #555555;
+      --nav-bg: rgba(255, 255, 255, 0.6);
+      --blur-val: 8px;
+      --shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1);
+      --glow-color: rgba(127, 0, 255, 0.4);
+    }
+
+    /* ================= RESET & SCROLLBAR ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      /* Fixes anchor links hiding behind navbar */
+      scroll-padding-top: 100px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 5px;
+    }
+
+    body.light ::-webkit-scrollbar-thumb {
+      background: #ccc;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #7f00ff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Utility to force white text on dark images regardless of theme */
+    .force-light-text {
+      color: #ffffff !important;
+    }
+
+    .force-light-text p {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    /* ================= PRELOADER ================= */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #050510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999999;
+      will-change: opacity, transform;
+    }
+
+    #loader h1 {
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 900;
+      color: #fff;
+      animation: intro 2.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      text-align: center;
+      line-height: 1.1;
+      will-change: transform, opacity;
+    }
+
+    #loader span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes intro {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.1);
+        pointer-events: none;
+      }
+    }
+
+    /* ================= NAVBAR ================= */
+    nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92%;
+      max-width: 1400px;
+      padding: 16px 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--nav-bg);
+      backdrop-filter: blur(var(--blur-val));
+      -webkit-backdrop-filter: blur(var(--blur-val));
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      z-index: 1000;
+      transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      will-change: transform;
+    }
+
+    nav a.logo {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    #nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    #nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.3s;
+      opacity: 0.8;
+      position: relative;
+    }
+
+    #nav-links a:hover {
+      opacity: 1;
+      color: #7f00ff;
+    }
+
+    /* Theme Toggle Button */
+    #themeBtn {
+      border: none;
+      background: var(--grad);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      min-width: 110px;
+    }
+
+    body.light #themeBtn {
+      box-shadow: 0 4px 15px rgba(127, 0, 255, 0.3);
+    }
+
+    #themeBtn:active {
+      transform: scale(0.95);
+    }
+
+    #nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    #nav-toggle span {
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ================= SECTIONS ================= */
+    section {
+      padding: 140px 0;
+      position: relative;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin-bottom: 40px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+    }
+
+    p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(5, 5, 16, 0.6), rgba(5, 5, 16, 0.8)),
+        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      will-change: transform;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ================= GRIDS & CARDS ================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 24px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .card:hover {
+      border-color: rgba(0, 255, 255, 0.3);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 24px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(127, 0, 255, 0.2));
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .card:hover .service-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .portfolio-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+      margin-bottom: 20px;
+      background: #000;
+    }
+
+    .workflow-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+    /* ================= SPLIT SECTION ================= */
+    .split-section {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .split-content {
+      flex: 1;
+    }
+
+    .split-content h2 {
+      text-align: left;
+    }
+
+    .split-image {
+      flex: 1;
+    }
+
+    .split-image img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .split-image:hover img {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    /* ================= CTA ================= */
+    .cta {
+      margin: 0 auto;
+      width: 92%;
+      max-width: 1400px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      padding: 120px 20px;
+      border-radius: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ================= FOOTER ================= */
+    .minimal-footer {
+      width: 92%;
+      max-width: 1400px;
+      margin: 80px auto 40px;
+      padding: 60px 20px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(var(--blur-val));
+      -webkit-backdrop-filter: blur(var(--blur-val));
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      text-align: center;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    .minimal-footer h2 span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .footer-social {
+      margin: 30px 0;
+    }
+
+    .footer-social a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: .3s;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    .footer-social a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: var(--grad);
+      transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .footer-social a:hover::after {
+      width: 100%;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      opacity: 0.6;
+      max-width: 600px;
+      margin: 0 auto 10px;
+    }
+
+    /* ================= POPUP ================= */
+    #popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 999999;
+      backdrop-filter: blur(5px);
+    }
+
+    #popup.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popup-box {
+      background: #1a1a2e;
+      padding: 50px;
+      border-radius: 24px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      color: #fff;
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #popup.active .popup-box {
+      transform: scale(1);
+    }
+
+    .popup-box button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 999px;
+      background: var(--grad);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .popup-box button:hover {
+      transform: scale(1.05);
+    }
+
+    /* ================= CURSOR GLOW ================= */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, var(--glow-color), transparent 60%);
+      mix-blend-mode: screen;
+      top: 0;
+      left: 0;
+      transform: translate3d(-50%, -50%, 0);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      will-change: transform;
+    }
+
+    @media (hover: none) {
+      .cursor-glow {
+        display: none;
+      }
+    }
+
+    /* ================= MOBILE RESPONSIVE ================= */
+    @media (max-width: 900px) {
+      .split-section {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .split-image img {
+        transform: rotate(0);
+      }
+
+      .split-content h2 {
+        text-align: center;
+      }
+
+      .split-content p {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 15px 24px;
+      }
+
+      #nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--card-border);
+        flex-direction: column;
+        padding: 30px;
+        border-radius: 20px;
+        display: none;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      #nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #nav-toggle {
+        display: flex;
+      }
+
+      #nav-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      #nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      #nav-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .grid {
+        gap: 20px;
+      }
+
+      .cta {
+        padding: 80px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body class="force-light-text">
+  <div class="cursor-glow"></div>
+
+  <div id="loader">
+    <h1>Welcome to<br><span>Nexovra Studios</span></h1>
+  </div>
+
+  <div id="popup">
+    <div class="popup-box">
+      <h2>Coming Soon</h2>
+      <p style="color: rgba(255,255,255,0.7);">This feature is under development. Stay tuned!</p>
+      <button id="close">Close</button>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#" class="logo">Nexovra Studios</a>
+    <div id="nav-links">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#" class="coming">App Dev</a>
+      <a href="#" class="coming">Web Dev</a>
+      <button id="themeBtn">Light Mode</button>
+    </div>
+    <div id="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <section class="hero force-light-text">
+    <div>
+      <h1><span>Nexovra Studios</span></h1>
+      <p>Logos • Banners • Emotes • Overlays • Branding</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Design Services</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1256/1256628.png" alt="Logo" class="service-icon">
+          <h3>Logo Design</h3>
+          <p>Unique mascots & wordmarks.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png" alt="Banner" class="service-icon">
+          <h3>Banner Design</h3>
+          <p>Headers for Twitch, X, and YT.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Emote" class="service-icon">
+          <h3>Custom Emotes</h3>
+          <p>Expressive chat assets.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/3309/3309490.png" alt="Animation" class="service-icon">
+          <h3>Animations</h3>
+          <p>Alerts, Stingers & Intros.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Overlay" class="service-icon">
+          <h3>Overlays</h3>
+          <p>In-game & Just Chatting screens.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" alt="Package" class="service-icon">
+          <h3>Full Packages</h3>
+          <p>Complete stream rebranding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <h2>Our Portfolio</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799314346d?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Mascot Logos">
+          <h3>Mascot Logos</h3>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Banners">
+          <h3>Banners</h3>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Emotes">
+          <h3>Emote Packs</h3>
+        </div>
+
+        <div class="card">
+          <video class="portfolio-img" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop">
+            <source src="https://static.videezy.com/system/resources/previews/000/039/223/original/52_29_08_19.mp4" type="video/mp4">
+            </video>
+          <h3>Animated Emotes</h3>
+        </div>
+
+        <div class="card">
+          <video class="portfolio-img" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop">
+            <source src="https://static.videezy.com/system/resources/previews/000/051/878/original/abstract_neon_background.mp4" type="video/mp4">
+          </video>
+          <h3>Animated Overlays</h3>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?q=80&w=1000&auto=format&fit=crop" class="portfolio-img" alt="Stream Package">
+          <h3>Character Arts</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="split-section">
+        <div class="split-content">
+          <h2>Why Nexovra Studios?</h2>
+          <p>
+            We build strong visual identities for streamers, creators, and brands.
+            Every project is crafted with precision, creativity, and modern design principles.
+            <br><br>
+            Unlike generic template sites, we provide custom artwork tailored specifically
+            to your community's unique vibe. We don't just design; we build brands.
+          </p>
+        </div>
+        <div class="split-image">
+          <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop" alt="Office Studio Work">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Our Workflow</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2620/2620986.png" class="workflow-icon" alt="Research">
+          <h3>1. Research</h3>
+          <p>Analyzing your niche & goals.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" class="workflow-icon" alt="Concept">
+          <h3>2. Concept</h3>
+          <p>Sketching initial layouts.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" class="workflow-icon" alt="Design">
+          <h3>3. Design</h3>
+          <p>Digital illustration & polish.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1688/1688988.png" class="workflow-icon" alt="Delivery">
+          <h3>4. Delivery</h3>
+          <p>High-res files ready to go.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta force-light-text">
+    <div style="position: relative; z-index: 2;">
+      <h2>Let’s Build Something Powerful</h2>
+      <p>Premium digital designs made with passion.</p>
+    </div>
+  </section>
+
+  <footer class="minimal-footer">
+    <h2><span>Nexovra</span> Studios</h2>
+    <p>
+      Crafting logos, overlays,
+      branding, websites & apps for modern creators.
+    </p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nexovra_studio?igsh=ZW93aDczcWoxaGY4" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/share/17kjQojSUK/" target="_blank">Facebook</a>
+      <a href="https://www.linkedin.com/company/shariqindustries/" target="_blank">LinkedIn</a>
+      <a href="https://x.com/nexovrastudios" target="_blank">X (Twitter)</a>
+    </div>
+    <p class="footer-copy">© 2017-2026 Nexovra Studios. All Rights Reserved.
+      <br>
+      All content available on this website, including but not limited to text, graphics, logos, brand identity elements, UI/UX designs, illustrations, animations, videos, layouts, digital assets, and creative materials, is the exclusive intellectual property of Nexovra Studios, unless otherwise stated.</p>
+    <p style="font-size: 1.0rem; opacity: 1.0 ;">Made with ❤️ by Nexovra Studios</p>
+    <p style="font-size: 1.0rem; opacity: 0.5;">version 1.0.0</p>
+  </footer>
+
+  <script>
+    /* =========================================================
+       PREMIUM PERFORMANCE ENGINE (240Hz+ Optimized)
+       =========================================================
+    */
+
+    /* --- VARIABLES --- */
+    const glow = document.querySelector(".cursor-glow");
+    const magneticElements = document.querySelectorAll("button, .card");
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const themeBtn = document.getElementById("themeBtn");
+
+    // Physics State
+    let mouse = { x: 0, y: 0 };
+    let cursor = { x: 0, y: 0 };
+
+    // Magnetic Elements Map
+    const magnets = Array.from(magneticElements).map(el => ({
+      element: el,
+      x: 0,
+      y: 0,
+      active: false,
+      rect: null
+    }));
+
+    /* --- THEME LOGIC (WITH PERSISTENCE) --- */
+    // Check localStorage immediately
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+      themeBtn.innerText = "Dark Mode";
+    }
+
+    themeBtn.onclick = () => {
+      document.body.classList.toggle("light");
+
+      if (document.body.classList.contains("light")) {
+        themeBtn.innerText = "Dark Mode";
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeBtn.innerText = "Light Mode";
+        localStorage.setItem('theme', 'dark');
+      }
+    };
+
+    /* --- EVENTS --- */
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      if (glow.style.opacity === '0') glow.style.opacity = '0.6';
+    });
+
+    if (!isTouch) {
+      magnets.forEach(mag => {
+        mag.element.addEventListener("mouseenter", () => {
+          mag.rect = mag.element.getBoundingClientRect();
+          mag.active = true;
+          mag.element.style.transition = "none";
+        });
+
+        mag.element.addEventListener("mouseleave", () => {
+          mag.active = false;
+          mag.element.style.transition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease";
+          mag.element.style.transform = "translate3d(0, 0, 0)";
+        });
+      });
+    }
+
+    /* --- ANIMATION LOOP --- */
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    function animate() {
+      cursor.x = lerp(cursor.x, mouse.x, 0.15);
+      cursor.y = lerp(cursor.y, mouse.y, 0.15);
+
+      glow.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
+
+      if (!isTouch) {
+        magnets.forEach(mag => {
+          if (mag.active && mag.rect) {
+            const targetX = (mouse.x - (mag.rect.left + mag.rect.width / 2)) * 0.2;
+            const targetY = (mouse.y - (mag.rect.top + mag.rect.height / 2)) * 0.2;
+            mag.x = lerp(mag.x, targetX, 0.2);
+            mag.y = lerp(mag.y, targetY, 0.2);
+            mag.element.style.transform = `translate3d(${mag.x}px, ${mag.y}px, 0)`;
+          } else {
+            mag.x = 0;
+            mag.y = 0;
+          }
+        });
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    /* --- UTILITIES --- */
+    window.addEventListener("load", () => {
+      document.body.classList.remove("force-light-text");
+      const loader = document.getElementById("loader");
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+      }, 2200);
+    });
+
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("close");
+
+    document.querySelectorAll(".coming").forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        popup.classList.add("active");
+      };
+    });
+
+    closeBtn.onclick = () => {
+      popup.classList.remove("active");
+    };
+
+    popup.onclick = (e) => {
+      if (e.target === popup) popup.classList.remove("active");
+    }
+
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    navToggle.onclick = () => {
+      navToggle.classList.toggle("active");
+      navLinks.classList.toggle("active");
+    };
+    
+    // Close mobile nav when clicking a link
+    document.querySelectorAll("#nav-links a").forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+        });
+    });
+  </script>
+</body>
+
+</html>
