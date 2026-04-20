@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Nexovra Studios - Premium digital design services including Logos, Stream Overlays, Banners, and Websites for creators.">
+  <meta name="description"
+    content="Nexovra Studios - Premium digital design services including Logos, Stream Overlays, Banners, and Websites for creators.">
   <meta name="keywords" content="Design, Stream Overlays, Logos, Branding, Web Development, Nexovra">
   <meta name="author" content="Nexovra Studios">
-  
+
   <meta property="og:type" content="website">
   <meta property="og:title" content="Nexovra Studios | Premium Digital Design">
   <meta property="og:description" content="Building strong visual identities for streamers, creators, and brands.">
- 
+
 
   <title>Nexovra Studio’s | Premium Digital Design</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
@@ -34,20 +35,17 @@
       --btn-text: #ffffff;
     }
 
-    body.light {
-      /* Light Theme Overrides */
-      --bg: #f0f2f5;
-      --card-bg: #ffffff;
-      --card-border: rgba(0, 0, 0, 0.05);
-      --text: #1a1a1a;
-      --text-muted: #555555;
-      /* Reduced Opacity and Blur for cleaner Light Mode */
-      --nav-bg: rgba(255, 255, 255, 0.6);
-      --blur-val: 8px;
-      /* Kam blur light mode ke liye */
-      --shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1);
-      --glow-color: rgba(127, 0, 255, 0.4);
-    }
+  body.light {
+  --bg: #f0f2f5;
+  --card-bg: rgba(255, 255, 255, 0.55); /* 👈 yeh change */
+  --card-border: rgba(0, 0, 0, 0.08);
+  --text: #1a1a1a;
+  --text-muted: #555555;
+  --nav-bg: rgba(255, 255, 255, 0.6);
+  --blur-val: 12px;
+  --shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.1);
+  --glow-color: rgba(127, 0, 255, 0.4);
+}
 
     /* ================= RESET & SCROLLBAR ================= */
     * {
@@ -57,6 +55,7 @@
       /* GPU Acceleration hints */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+
     }
 
     html {
@@ -333,9 +332,15 @@
       position: relative;
       overflow: hidden;
       backface-visibility: hidden;
+  background: var(--card-bg);
+  
+  backdrop-filter: blur(var(--blur-val));
+  -webkit-backdrop-filter: blur(var(--blur-val));
+
       /* Reduces flicker */
       transform: translate3d(0, 0, 0);
       /* Force GPU */
+
     }
 
     /* Hover effect handled by JS physics, fallback here */
@@ -644,15 +649,58 @@
         padding: 80px 20px;
       }
     }
+
+    .bg-orb {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      opacity: 0.4;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .orb1 {
+      background: #7f00ff;
+      top: 10%;
+      left: 10%;
+    }
+
+    .orb2 {
+      background: #00ffff;
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+
+    .orb3 {
+      background: #ff00ff;
+      top: 50%;
+      left: 50%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(80px, -60px) scale(1.2);
+      }
+    }
   </style>
 </head>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
 
 <body class="force-light-text">
   <div class="cursor-glow"></div>
 
-  <div id="loader">
-    <h1>Welcome to<br><span>Nexovra Studio’s</span></h1>
-  </div>
 
   <div id="popup">
     <div class="popup-box">
@@ -836,9 +884,11 @@
     </div>
     <p class="footer-copy">© 2017-2026 Nexovra Studios. All Rights Reserved.
 
-All content available on this website, including but not limited to text, graphics, logos, brand identity elements, UI/UX designs, illustrations, animations, videos, layouts, digital assets, and creative materials, is the exclusive intellectual property of Nexovra Studios, unless otherwise stated.</p>
+      All content available on this website, including but not limited to text, graphics, logos, brand identity
+      elements, UI/UX designs, illustrations, animations, videos, layouts, digital assets, and creative materials, is
+      the exclusive intellectual property of Nexovra Studios, unless otherwise stated.</p>
     <p style="font-size: 1.0rem; opacity: 1.0 ;">Made with ❤️ by Nexovra Studios</p>
-    <p style="font-size: 1.0rem; opacity: 0.5;">version 1.0.0</p>
+    <p style="font-size: 1.0rem; opacity: 0.5;">version 1.1.0</p>
   </footer>
 
   <script>
@@ -941,16 +991,9 @@ All content available on this website, including but not limited to text, graphi
 
     /* --- STANDARD UTILITIES (Logic unchanged, just optimized) --- */
 
-    /* PRELOADER */
     window.addEventListener("load", () => {
       document.body.classList.remove("force-light-text");
-      const loader = document.getElementById("loader");
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        loader.style.pointerEvents = 'none';
-      }, 2200);
     });
-
     /* THEME SWITCHER - FIXED LOGIC */
     themeBtn.onclick = () => {
       document.body.classList.toggle("light");
@@ -990,6 +1033,39 @@ All content available on this website, including but not limited to text, graphi
       navToggle.classList.toggle("active");
       navLinks.classList.toggle("active");
     };
+    cursor.x = lerp(cursor.x, mouse.x, 0.15);
+    cursor.y = lerp(cursor.y, mouse.y, 0.15);
+
+    cursor.x = lerp(cursor.x, mouse.x, 0.08);
+    cursor.y = lerp(cursor.y, mouse.y, 0.08);
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
+    });
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function setTheme(e) {
+  if (e.matches) {
+    document.body.classList.remove("light"); // Dark mode
+    themeBtn.innerText = "Light Mode";
+  } else {
+    document.body.classList.add("light"); // Light mode
+    themeBtn.innerText = "Dark Mode";
+  }
+}
+
+// Run on load
+setTheme(prefersDark);
+
+// Listen for changes (agar user device theme change kare)
+prefersDark.addEventListener('change', setTheme);
   </script>
 </body>
 
