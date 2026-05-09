@@ -18,6 +18,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
   <style>
+
+    /* ================= UPDATE POPUP ================= */
+#updatePopup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 999999;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+}
+
+#updatePopup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Glass box */
+.update-box {
+  width: 320px;
+  padding: 35px;
+  border-radius: 20px;
+  text-align: center;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  color: var(--text);
+
+  transform: scale(0.9);
+  transition: 0.3s ease;
+}
+
+#updatePopup.active .update-box {
+  transform: scale(1);
+}
+
+/* Button */
+.update-box button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+
+  background: var(--grad);
+  color: white;
+  transition: 0.3s;
+}
+
+.update-box button:hover {
+  transform: scale(1.05);
+}
     /* ================= ROOT / THEME ================= */
     :root {
       /* Dark Theme (Default) */
@@ -745,6 +805,19 @@ body.mobile-lite .hero {
   </style>
 </head>
 
+<!-- UPDATE POPUP -->
+<div id="updatePopup">
+  <div class="update-box">
+    <h2>🚀 Update Coming Soon</h2>
+    <p>Update is coming on <b>12 May 2025</b></p>
+    <p style="font-size:0.9rem; opacity:0.7;">
+      New colors + UI improvements will be introduced.
+    </p>
+
+    <button onclick="closeUpdatePopup()">Dismiss</button>
+  </div>
+</div>
+
 <div class="bg-orb orb1"></div>
 <div class="bg-orb orb2"></div>
 <div class="bg-orb orb3"></div>
@@ -943,6 +1016,28 @@ body.mobile-lite .hero {
   </footer>
 
   <script>
+
+
+    // UPDATE POPUP AUTO SHOW
+const updatePopup = document.getElementById("updatePopup");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    updatePopup.classList.add("active");
+  }, 800);
+});
+
+// CLOSE FUNCTION
+function closeUpdatePopup() {
+  updatePopup.classList.remove("active");
+}
+
+// click outside close
+updatePopup.addEventListener("click", (e) => {
+  if (e.target === updatePopup) {
+    updatePopup.classList.remove("active");
+  }
+});
     /* =========================================================
        PREMIUM PERFORMANCE ENGINE (240Hz+ Optimized)
        Uses requestAnimationFrame for fluid render loop.
