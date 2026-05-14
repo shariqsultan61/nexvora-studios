@@ -807,10 +807,432 @@ body.mobile-lite .hero {
 
 <!-- UPDATE POPUP -->
 <div id="updatePopup">
-  <div class="update-box">        
+  <div class="update-box">
     <h2>🚀 Update Coming Soon</h2>
-    <p>Update is coming on <b>17 May 2025</b></p>
+    <p>Update is coming on <b>13 May 2025</b></p>
     <p style="font-size:0.9rem; opacity:0.7;">
       New colors + UI improvements will be introduced.
     </p>
 
+    <button onclick="closeUpdatePopup()">Dismiss</button>
+  </div>
+</div>
+
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
+
+<body class="force-light-text">
+  <div class="cursor-glow"></div>
+
+
+  <div id="popup">
+    <div class="popup-box">
+      <h2>Coming Soon</h2>
+      <p style="color: rgba(255,255,255,0.7);">This feature is under development. Stay tuned!</p>
+      <button id="close">Close</button>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#" class="logo">Nexovra Studio’s</a>
+    <div id="nav-links">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#" class="coming">Apps Dev</a>
+      <a href="#" class="coming">Websites Dev</a>
+      <button id="themeBtn">Light Mode</button>
+
+    </div>
+    <div id="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <section class="hero force-light-text">
+    <div>
+      <h1><span>Nexovra Studios</span></h1>
+      <p>Logos • Banners • Emotes • Overlays • Branding</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Our Design Services</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1256/1256628.png" alt="Logo" class="service-icon">
+          <h3>Logo Design</h3>
+          <p>Unique mascots & wordmarks.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/6062/6062646.png" alt="Banner" class="service-icon">
+          <h3>Banner Design</h3>
+          <p>Headers for Twitch, X, and YT.</p>
+        </div>
+        <div class="card">
+          <img src="icons8-pogchamp-48.png" alt="Emote" class="service-icon">
+          <h3>Custom Emotes</h3>
+          <p>Expressive chat assets.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/3309/3309490.png" alt="Animation" class="service-icon">
+          <h3>Animations</h3>
+          <p>Alerts, Stingers & Intros.</p>
+        </div>
+        <div class="card">
+          <img src="icons8-overlay-94.png" alt="Overlay" class="service-icon">
+          <h3>Overlays</h3>
+          <p>In-game & Just Chatting screens.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" alt="Package" class="service-icon">
+          <h3>Full Packages</h3>
+          <p>Complete stream rebranding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <h2>Our Portfolio</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="tq.jpg" class="portfolio-img" alt="Mascot Logos">
+          <h3>Mascot Logos</h3>
+        </div>
+
+        <div class="card">
+          <img src="ozzy_banner..jpg" class="portfolio-img" alt="Banners">
+          <h3>Banners</h3>
+        </div>
+
+        <div class="card">
+          <img src="emote.jpeg" class="portfolio-img" alt="Emotes">
+          <h3>Emote Packs</h3>
+        </div>
+
+        <div class="card">
+          <video class="portfolio-img" autoplay muted loop playsinline
+            poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop">
+            <source src="004 - Copy.mp4" type="video/mp4">
+          </video>
+          <h3>Animated Emotes</h3>
+        </div>
+
+        <div class="card">
+          <video class="portfolio-img" autoplay muted loop playsinline
+            poster="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop">
+            <source src="Dr_Cowardly_Work_Overlays.mp4" type="video/mp4">
+          </video>
+          <h3>Animated Overlays</h3>
+        </div>
+
+        <div class="card">
+          <img src="fa1e15225377815.681bf7f28511d.jpg" class="portfolio-img" alt="Stream Package">
+          <h3>Furry Arts</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="split-section">
+        <div class="split-content">
+          <h2>Why Nexovra Studio’s?</h2>
+          <p>
+            We build strong visual identities for streamers, creators, and brands.
+            Every project is crafted with precision, creativity, and modern design principles.
+            <br><br>
+            Unlike generic template sites, we provide custom artwork tailored specifically
+            to your community's unique vibe. We don't just design; we build brands.
+          </p>
+        </div>
+        <div class="split-image">
+          <img src="Image_fx (2).png" alt="Office Studio Work">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Our Workflow</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/2620/2620986.png" class="workflow-icon" alt="Research">
+          <h3>1. Research</h3>
+          <p>Analyzing your niche & goals.</p>
+        </div>
+        <div class="card">
+          <img src="icons8-concept-64.png" class="workflow-icon" alt="Concept">
+          <h3>2. Concept</h3>
+          <p>Sketching initial layouts.</p>
+        </div>
+        <div class="card">
+          <img src="icons8-design-64.png" class="workflow-icon" alt="Design">
+          <h3>3. Design</h3>
+          <p>Digital illustration & polish.</p>
+        </div>
+        <div class="card">
+          <img src="https://cdn-icons-png.flaticon.com/512/1688/1688988.png" class="workflow-icon" alt="Delivery">
+          <h3>4. Delivery</h3>
+          <p>High-res files ready to go.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta force-light-text">
+    <div style="position: relative; z-index: 2;">
+      <h2>Let’s Build Something Powerful</h2>
+      <p>Premium digital designs made with passion.</p>
+    </div>
+  </section>
+
+  <footer class="minimal-footer">
+    <h2><span>Nexovra</span> Studio's</h2>
+    <p>
+      Crafting logos, overlays,
+      branding, websites & apps for modern creators.
+    </p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/nexovra_studio?igsh=ZW93aDczcWoxaGY4">Instagram</a>
+      <a href="https://www.facebook.com/share/17kjQojSUK/">Facebook</a>
+      <a href="https://www.linkedin.com/company/shariqindustries/">LinkedIn</a>
+      <a href="https://x.com/nexovrastudios">X (Twitter)</a>
+    </div>
+    <p class="footer-copy">© 2017-2026 Nexovra Studios. All Rights Reserved.
+
+      All content available on this website, including but not limited to text, graphics, logos, brand identity
+      elements, UI/UX designs, illustrations, animations, videos, layouts, digital assets, and creative materials, is
+      the exclusive intellectual property of Nexovra Studios, unless otherwise stated.</p>
+    <p style="font-size: 1.0rem; opacity: 1.0 ;">Made with ❤️ by Nexovra Studios</p>
+    <p style="font-size: 1.0rem; opacity: 0.5;">version 1.1.0</p>
+  </footer>
+
+  <script>
+
+
+    // UPDATE POPUP AUTO SHOW
+const updatePopup = document.getElementById("updatePopup");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    updatePopup.classList.add("active");
+  }, 800);
+});
+
+// CLOSE FUNCTION
+function closeUpdatePopup() {
+  updatePopup.classList.remove("active");
+}
+
+// click outside close
+updatePopup.addEventListener("click", (e) => {
+  if (e.target === updatePopup) {
+    updatePopup.classList.remove("active");
+  }
+});
+    /* =========================================================
+       PREMIUM PERFORMANCE ENGINE (240Hz+ Optimized)
+       Uses requestAnimationFrame for fluid render loop.
+       =========================================================
+    */
+
+    /* --- VARIABLES --- */
+    const glow = document.querySelector(".cursor-glow");
+    const magneticElements = document.querySelectorAll("button, .card");
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const themeBtn = document.getElementById("themeBtn");
+
+    // Physics State
+    let mouse = { x: 0, y: 0 }; // Raw mouse position
+    let cursor = { x: 0, y: 0 }; // Interpolated cursor position (Lag effect)
+
+    // Magnetic Elements Map (to store state for each element independently)
+    const magnets = Array.from(magneticElements).map(el => ({
+      element: el,
+      x: 0,
+      y: 0,
+      active: false,
+      rect: null
+    }));
+
+    /* --- EVENTS --- */
+
+    // 1. Efficient Mouse Tracking (No layout thrashing here)
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+
+      // Reveal glow once mouse moves
+      if (glow.style.opacity === '0') glow.style.opacity = '0.6';
+    });
+
+    if (!isTouch) {
+      // 2. Magnetic Triggering
+      magnets.forEach(mag => {
+        mag.element.addEventListener("mouseenter", () => {
+          mag.rect = mag.element.getBoundingClientRect();
+          mag.active = true;
+          // Disable CSS transition for instant JS physics
+          mag.element.style.transition = "none";
+        });
+
+        mag.element.addEventListener("mouseleave", () => {
+          mag.active = false;
+          // Re-enable transition for smooth snap back
+          mag.element.style.transition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease";
+          mag.element.style.transform = "translate3d(0, 0, 0)";
+        });
+      });
+    }
+
+    /* --- ANIMATION LOOP (The Heart of Smoothness) --- */
+
+    // Lerp function (Linear Interpolation)
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    function animate() {
+      // 1. Smooth Cursor Glow (Lag Factor: 0.15)
+      cursor.x = lerp(cursor.x, mouse.x, 0.15);
+      cursor.y = lerp(cursor.y, mouse.y, 0.15);
+
+      // Use translate3d for GPU composition
+      glow.style.transform = `translate3d(${cursor.x}px, ${cursor.y}px, 0) translate(-50%, -50%)`;
+
+      // 2. Magnetic Buttons Physics
+      if (!isTouch) {
+        magnets.forEach(mag => {
+          if (mag.active && mag.rect) {
+            // Calculate distance from center
+            const targetX = (mouse.x - (mag.rect.left + mag.rect.width / 2)) * 0.2; // Strength 0.2
+            const targetY = (mouse.y - (mag.rect.top + mag.rect.height / 2)) * 0.2;
+
+            // Apply Lerp to magnet movement as well
+            mag.x = lerp(mag.x, targetX, 0.2);
+            mag.y = lerp(mag.y, targetY, 0.2);
+
+            mag.element.style.transform = `translate3d(${mag.x}px, ${mag.y}px, 0)`;
+          } else {
+            // Reset internal coordinates when not active
+            mag.x = 0;
+            mag.y = 0;
+          }
+        });
+      }
+
+      // Loop infinitely at monitor refresh rate
+      requestAnimationFrame(animate);
+    }
+
+    // Start Loop
+    animate();
+
+
+    /* --- STANDARD UTILITIES (Logic unchanged, just optimized) --- */
+
+    window.addEventListener("load", () => {
+      document.body.classList.remove("force-light-text");
+    });
+    /* THEME SWITCHER - FIXED LOGIC */
+    themeBtn.onclick = () => {
+      document.body.classList.toggle("light");
+
+      // Update Button Text
+      if (document.body.classList.contains("light")) {
+        themeBtn.innerText = "Dark Mode";
+      } else {
+        themeBtn.innerText = "Light Mode";
+      }
+    };
+
+    /* POPUP LOGIC */
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("close");
+
+    document.querySelectorAll(".coming").forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        popup.classList.add("active");
+      };
+    });
+
+    closeBtn.onclick = () => {
+      popup.classList.remove("active");
+    };
+
+    popup.onclick = (e) => {
+      if (e.target === popup) popup.classList.remove("active");
+    }
+
+    /* NAV TOGGLE Mobile */
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    navToggle.onclick = () => {
+      navToggle.classList.toggle("active");
+      navLinks.classList.toggle("active");
+    };
+    cursor.x = lerp(cursor.x, mouse.x, 0.15);
+    cursor.y = lerp(cursor.y, mouse.y, 0.15);
+
+    cursor.x = lerp(cursor.x, mouse.x, 0.08);
+    cursor.y = lerp(cursor.y, mouse.y, 0.08);
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
+    });
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function setTheme(e) {
+  if (e.matches) {
+    document.body.classList.remove("light"); // Dark mode
+    themeBtn.innerText = "Light Mode";
+  } else {
+    document.body.classList.add("light"); // Light mode
+    themeBtn.innerText = "Dark Mode";
+  }
+}
+
+// Run on load
+setTheme(prefersDark);
+
+// Listen for changes (agar user device theme change kare)
+prefersDark.addEventListener('change', setTheme);
+
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const rotateX = ((y / rect.height) - 0.5) * -10;
+    const rotateY = ((x / rect.width) - 0.5) * 10;
+
+    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0) rotateY(0)";
+  });
+}); 
+const isMobile = window.innerWidth < 768;
+
+
+  </script>
+</body>
+
+</html>
