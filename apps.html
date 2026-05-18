@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Nexovra Studios — Website Development Portfolio. Gaming sites, e-commerce, SaaS dashboards, business, portfolio, and more.">
+<meta property="og:title" content="Web Dev Portfolio | Nexovra Studios">
+<title>Web Dev Portfolio | Nexovra Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+.wd-hero {
+  padding:140px 0 80px;
+  position:relative; overflow:hidden; text-align:center;
+}
+.wd-hero-bg { position:absolute; inset:0; pointer-events:none; }
+.wd-grain {
+  position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.022;
+}
+.wd-b1{position:absolute;width:580px;height:580px;border-radius:50%;filter:blur(110px);background:rgba(76,201,240,0.1);top:-180px;right:-60px;}
+.wd-b2{position:absolute;width:460px;height:460px;border-radius:50%;filter:blur(100px);background:rgba(247,37,133,0.08);bottom:-100px;left:-40px;}
+.wd-b3{position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(90px);background:rgba(114,9,183,0.07);top:40%;left:30%;}
+.wd-grid-bg{
+  position:absolute; inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 75% 85% at 50% 50%,black,transparent);
+  opacity:0.42;
+}
+.wd-hero-inner { position:relative; z-index:2; }
+.wd-hero-inner h1 {
+  font-family:var(--font-display);
+  font-size:clamp(3.6rem,7vw,7.5rem);
+  letter-spacing:3px; line-height:0.93; margin-bottom:24px;
+}
+.wd-hero-inner h1 em { font-family:var(--font-serif); font-style:italic; color:var(--accent-2); font-size:0.88em; letter-spacing:0; }
+.wd-hero-inner p { color:var(--text-2); font-size:clamp(0.9rem,1.5vw,1.06rem); line-height:1.78; max-width:560px; margin:0 auto 38px; }
+
+/* Stats strip */
+.wd-stats {
+  display:flex; align-items:center; justify-content:center;
+  gap:0; flex-wrap:wrap; margin-top:60px;
+  border:1px solid var(--border); border-radius:var(--radius-lg);
+  background:var(--surface); padding:32px;
+}
+.wd-stat { flex:1 1 120px; text-align:center; padding:12px 28px; }
+.wd-stat-v { font-family:var(--font-display); font-size:2.6rem; color:var(--accent-2); letter-spacing:2px; line-height:1; display:inline; }
+.wd-stat-s { font-family:var(--font-display); font-size:1.3rem; color:var(--accent); display:inline; }
+.wd-stat-l { font-size:0.72rem; color:var(--text-3); letter-spacing:2px; text-transform:uppercase; margin-top:7px; }
+.wd-sdiv { width:1px; height:50px; background:var(--border); flex-shrink:0; }
+
+/* ── FILTER ── */
+.wd-filter {
+  display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+  padding:56px 0 52px;
+}
+.wd-filter-btn {
+  display:flex; align-items:center; gap:7px;
+  padding:9px 22px; border:1px solid var(--border-2);
+  border-radius:50px; font-size:0.8rem; font-weight:500;
+  color:var(--text-2); letter-spacing:0.3px;
+  transition:border-color 0.28s, color 0.28s, background 0.28s, transform 0.32s var(--ease-spring);
+}
+.wd-filter-btn:hover { border-color:var(--accent-2); color:var(--text); background:rgba(76,201,240,0.07); transform:translateY(-2px); }
+.wd-filter-btn.active { background:var(--accent-2); border-color:var(--accent-2); color:#06060f; font-weight:600; box-shadow:0 4px 20px rgba(76,201,240,0.3); }
+.wd-filter-btn .fbi { font-size:0.85rem; }
+
+/* ── FEATURED SHOWCASE ── */
+.featured-section { padding:0 0 40px; }
+.featured-label {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:0.67rem; letter-spacing:4px; text-transform:uppercase;
+  color:var(--accent-2); margin-bottom:22px; font-weight:600;
+}
+.featured-label::before { content:''; display:block; width:26px; height:1px; background:var(--accent-2); }
+
+.featured-card {
+  display:grid; grid-template-columns:1.1fr 0.9fr;
+  border:1px solid var(--border); border-radius:var(--radius-xl);
+  overflow:hidden; background:var(--card-bg);
+  transition:box-shadow 0.4s, border-color 0.35s;
+  cursor:pointer;
+  position:relative;
+}
+.featured-card:hover { border-color:var(--border-2); box-shadow:0 32px 80px rgba(0,0,0,0.5); }
+.featured-card:focus-visible { outline:2px solid var(--accent-2); outline-offset:3px; }
+.fc-img-wrap {
+  position:relative; min-height:380px; overflow:hidden;
+}
+.fc-img-wrap img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.7s var(--ease-out);
+}
+.featured-card:hover .fc-img-wrap img { transform:scale(1.04); }
+.fc-img-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to right, transparent 60%, var(--card-bg));
+}
+.fc-badge-strip {
+  position:absolute; top:18px; left:18px;
+  display:flex; gap:8px;
+}
+.fc-badge {
+  padding:5px 14px; border-radius:50px;
+  font-size:0.65rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  backdrop-filter:blur(12px);
+}
+.fc-body {
+  padding:44px 44px 40px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.fc-cat { font-size:0.67rem; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin-bottom:10px; }
+.fc-title { font-family:var(--font-display); font-size:clamp(2rem,2.8vw,2.6rem); letter-spacing:2px; margin-bottom:14px; line-height:1.05; }
+.fc-desc { color:var(--text-2); font-size:0.9rem; line-height:1.75; margin-bottom:22px; }
+.fc-stack { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:22px; }
+.fc-tech {
+  padding:4px 12px; border-radius:5px;
+  background:var(--surface-2); border:1px solid var(--border-2);
+  font-size:0.72rem; color:var(--text-2); letter-spacing:0.4px;
+}
+.fc-meta-row { display:flex; align-items:center; gap:18px; margin-bottom:28px; flex-wrap:wrap; }
+.fc-meta-item { font-size:0.8rem; color:var(--text-3); display:flex; align-items:center; gap:6px; }
+.fc-meta-icon { font-size:0.85rem; }
+.fc-actions { display:flex; gap:11px; flex-wrap:wrap; }
+.view-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 26px; background:var(--accent-2); color:#06060f;
+  border-radius:var(--radius-sm); font-weight:700; font-size:0.87rem;
+  transition:transform 0.32s var(--ease-spring), box-shadow 0.28s;
+  box-shadow:0 4px 20px rgba(76,201,240,0.32);
+}
+.view-btn:hover { transform:translateY(-2px) scale(1.04); box-shadow:0 8px 28px rgba(76,201,240,0.48); }
+
+
+.wd-grid-section { padding:12px 0 120px; }
+.wd-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:22px;
+}
+
+
+.wd-card {
+  border-radius:var(--radius-lg); overflow:hidden;
+  border:1px solid var(--border); background:var(--card-bg);
+  cursor:pointer;
+  transition:transform 0.44s var(--ease-spring), border-color 0.3s, box-shadow 0.4s;
+  position:relative;
+}
+.wd-card:hover { transform:translateY(-9px); border-color:var(--border-2); box-shadow:var(--shadow-lg); }
+.wd-card:focus-visible { outline:2px solid var(--accent-2); outline-offset:3px; }
+.wd-thumb {
+  width:100%; height:208px; position:relative; overflow:hidden;
+}
+.wd-thumb img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.65s var(--ease-out);
+}
+.wd-card:hover .wd-thumb img { transform:scale(1.07); }
+.wd-thumb-fallback {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center; font-size:3rem;
+}
+.wd-thumb-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(6,6,15,0.72) 0%, transparent 50%);
+  opacity:0; transition:opacity 0.35s;
+  display:flex; align-items:flex-end; padding:16px;
+}
+.wd-card:hover .wd-thumb-overlay { opacity:1; }
+.wd-overlay-text { font-size:0.75rem; font-weight:600; letter-spacing:1px; color:#fff; text-transform:uppercase; }
+.wd-cat-badge {
+  position:absolute; top:13px; right:13px;
+  padding:4px 12px; border-radius:50px;
+  font-size:0.63rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  backdrop-filter:blur(14px);
+}
+.wd-live-dot {
+  position:absolute; top:14px; left:14px;
+  display:flex; align-items:center; gap:6px;
+  padding:4px 10px; border-radius:50px;
+  background:rgba(6,214,160,0.15); border:1px solid rgba(6,214,160,0.3);
+  font-size:0.6rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#06d6a0;
+}
+.ld-pulse { width:5px; height:5px; border-radius:50%; background:#06d6a0; animation:ldp 1.8s ease-in-out infinite; }
+@keyframes ldp { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.7);opacity:0.4} }
+
+.wd-meta { padding:20px 22px 24px; }
+.wd-type { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
+.wd-title { font-family:var(--font-display); font-size:1.38rem; letter-spacing:1.5px; margin-bottom:8px; line-height:1.1; }
+.wd-desc { color:var(--text-2); font-size:0.84rem; line-height:1.65; margin-bottom:16px; }
+.wd-stack { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+.wd-stack span {
+  padding:3px 10px; border-radius:5px;
+  border:1px solid var(--border); font-size:0.65rem;
+  letter-spacing:0.4px; color:var(--text-3); text-transform:uppercase;
+}
+.wd-footer { display:flex; justify-content:space-between; align-items:center; }
+.wd-complexity {
+  display:flex; align-items:center; gap:6px;
+  font-size:0.72rem; color:var(--text-3);
+}
+.complexity-bars { display:flex; gap:3px; }
+.cb { width:14px; height:4px; border-radius:2px; background:var(--border-2); }
+.cb.filled { background:var(--accent-2); }
+.wd-arrow {
+  width:30px; height:30px; border-radius:50%;
+  border:1px solid var(--border-2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.75rem; color:var(--text-2);
+  transition:background 0.28s, border-color 0.28s, color 0.28s, transform 0.32s var(--ease-spring);
+}
+.wd-card:hover .wd-arrow { background:var(--accent-2); border-color:var(--accent-2); color:#06060f; transform:rotate(-45deg); }
+
+
+.modal-preview-img {
+  width:100%; height:290px; object-fit:cover;
+  border-radius:var(--radius-md); margin-bottom:28px;
+}
+.modal-preview-fallback {
+  width:100%; height:230px; border-radius:var(--radius-md);
+  display:flex; align-items:center; justify-content:center;
+  font-size:4.5rem; margin-bottom:28px;
+}
+.modal-tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+.modal-tag {
+  padding:5px 14px; border-radius:50px;
+  font-size:0.67rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+  border:1px solid var(--border-2);
+}
+.m-title { font-family:var(--font-display); font-size:2.3rem; letter-spacing:2px; margin-bottom:5px; }
+.m-type  { font-size:0.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent-2); font-weight:600; margin-bottom:24px; }
+.m-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:24px; }
+.m-info-box {
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:var(--radius-md); padding:16px 18px;
+}
+.m-info-box h4 { font-size:0.63rem; letter-spacing:3px; text-transform:uppercase; color:var(--text-3); margin-bottom:8px; font-weight:600; }
+.m-info-box p { font-size:0.86rem; color:var(--text-2); line-height:1.6; }
+.m-tech-wrap { display:flex; gap:7px; flex-wrap:wrap; }
+.m-tech { padding:4px 12px; border-radius:5px; background:var(--surface-3); border:1px solid var(--border-2); font-size:0.74rem; color:var(--text-2); }
+.m-section { margin-bottom:22px; }
+.m-section h3 { font-family:var(--font-display); font-size:1.18rem; letter-spacing:2px; margin-bottom:10px; }
+.m-section p { color:var(--text-2); font-size:0.88rem; line-height:1.75; }
+.m-features { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+.m-feat { display:flex; align-items:center; gap:10px; font-size:0.85rem; color:var(--text-2); }
+.mf-check { width:18px; height:18px; border-radius:5px; background:rgba(76,201,240,0.15); border:1px solid rgba(76,201,240,0.3); display:flex; align-items:center; justify-content:center; color:var(--accent-2); font-size:0.6rem; flex-shrink:0; }
+.m-score-row { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px; }
+.m-score {
+  display:flex; align-items:center; gap:8px;
+  padding:10px 18px; border-radius:var(--radius-sm);
+  background:var(--surface-2); border:1px solid var(--border);
+  font-size:0.82rem; color:var(--text-2);
+}
+.m-score-val { font-family:var(--font-display); font-size:1.3rem; color:var(--accent-2); }
+.m-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; padding-top:22px; border-top:1px solid var(--border); }
+
+/* ── NO RESULTS ── */
+.no-results { text-align:center; padding:80px 20px; color:var(--text-3); }
+.no-results .nr-ico { font-size:3rem; margin-bottom:16px; }
+
+/* ── CTA BOTTOM ── */
+.wd-cta { padding:0 0 120px; }
+.wd-cta-box {
+  position:relative; border:1px solid var(--border); border-radius:var(--radius-xl);
+  padding:88px 40px; text-align:center; overflow:hidden;
+  background:var(--surface);
+}
+.wd-cta-blob { position:absolute; inset:0; background:radial-gradient(ellipse 55% 70% at 50% 0%,rgba(76,201,240,0.12),transparent); pointer-events:none; }
+.wd-cta-grid {
+  position:absolute; inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 25%,transparent);
+  opacity:0.35; pointer-events:none;
+}
+.wd-cta-inner { position:relative; z-index:1; }
+.wd-cta-inner h2 { font-family:var(--font-display); font-size:clamp(2.5rem,5vw,4.5rem); letter-spacing:3px; margin:14px 0 18px; line-height:1.05; }
+.wd-cta-inner h2 em { font-family:var(--font-serif); font-style:italic; color:var(--accent-2); letter-spacing:0; font-size:0.86em; }
+.wd-cta-inner p { color:var(--text-2); max-width:440px; margin:0 auto 36px; line-height:1.75; font-size:0.95rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:1024px) {
+  .featured-card { grid-template-columns:1fr; }
+  .fc-img-wrap { min-height:260px; }
+  .fc-body { padding:30px 28px 32px; }
+}
+@media (max-width:768px) {
+  .wd-grid { grid-template-columns:1fr; }
+  .m-info-grid { grid-template-columns:1fr; }
+  .m-features { grid-template-columns:1fr; }
+  .wd-stats { flex-direction:column; gap:20px; }
+  .wd-sdiv { width:60px; height:1px; }
+  .modal-preview-img { height:200px; }
+}
+@media (max-width:480px) {
+  .fc-body { padding:22px 20px 26px; }
+  .wd-cta-box { padding:60px 20px; }
+}
+</style>
+</head>
+<body id="top">
+
+<div id="page-loader" aria-label="Loading" role="status">
+  <div class="pl-inner">
+    <div class="pl-logo">NEX<span>O</span>VRA</div>
+    <div class="pl-bar"><div class="pl-fill"></div></div>
+  </div>
+</div>
+
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar" role="banner">
+  <div class="nav-inner container-wide">
+    <a href="#top" class="nav-logo">
+      <span class="logo-mark" aria-hidden="true">N</span>
+      <span class="logo-text">Nexovra Studios</span>
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary navigation">
+      <a href="index.html" class="nav-item">Home</a>
+      
+      
+      <a href="portfolio.html"       class="nav-item" >Portfolio</a>
+      <a href="apps.html"         class="nav-item active">Web Dev</a>
+      <a href="https://www.instagram.com/nexovrastudios"   class="nav-item">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme" aria-pressed="false">
+        <span class="tt-knob" aria-hidden="true">☾</span>
+      </button>
+      <a href="https://www.instagram.com/nexovrastudios" class="nav-cta">Start a Project</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="wd-hero" id="home" aria-label="Web Dev Portfolio Hero">
+  <div class="wd-hero-bg">
+    <div class="wd-grain"></div>
+    <div class="wd-b1"></div><div class="wd-b2"></div><div class="wd-b3"></div>
+    <div class="wd-grid-bg"></div>
+  </div>
+  <div class="container wd-hero-inner">
+    <div class="section-tag" style="justify-content:center;color:var(--accent-2)">
+      <span style="background:var(--accent-2);display:block;width:26px;height:1px"></span>
+      <span class="platform-badge">Running on Web</span>
+    </div>
+    <h1>Sites That <em>Convert.</em></h1>
+    <p>From gaming platforms and SaaS dashboards to luxury e-commerce and corporate identities — every site we build is fast, stunning, and built to perform.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="#wd-grid" class="btn-primary" style="background:var(--accent-2);color:#06060f;box-shadow:0 4px 24px rgba(76,201,240,0.35)">
+        Browse Projects
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener noreferrer" class="btn-ghost">Get a Quote</a>
+    </div>
+
+    <!-- Stats -->
+    <div class="wd-stats reveal">
+      <div class="wd-stat">
+        <div><span class="wd-stat-v" data-target="48">0</span><span class="wd-stat-s">+</span></div>
+        <div class="wd-stat-l">Sites Launched</div>
+      </div>
+      <div class="wd-sdiv"></div>
+      <div class="wd-stat">
+        <div><span class="wd-stat-v" data-target="12">0</span><span class="wd-stat-s"></span></div>
+        <div class="wd-stat-l">Categories</div>
+      </div>
+      <div class="wd-sdiv"></div>
+      <div class="wd-stat">
+        <div><span class="wd-stat-v" data-target="99">0</span><span class="wd-stat-s">%</span></div>
+        <div class="wd-stat-l">Client Satisfaction</div>
+      </div>
+      <div class="wd-sdiv"></div>
+      <div class="wd-stat">
+        <div><span class="wd-stat-v" data-target="9">0</span><span class="wd-stat-s">yr</span></div>
+        <div class="wd-stat-l">Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FILTER ═══════ -->
+<div class="container">
+  <div class="wd-filter" role="group" aria-label="Filter web projects">
+    <button class="wd-filter-btn active" data-cat="all"><span class="fbi">🌐</span> All Sites</button>
+    <button class="wd-filter-btn" data-cat="gaming"><span class="fbi">🎮</span> Gaming</button>
+    <button class="wd-filter-btn" data-cat="ecommerce"><span class="fbi">🛍️</span> E-Commerce</button>
+    <button class="wd-filter-btn" data-cat="saas"><span class="fbi">📊</span> SaaS / Dashboards</button>
+    <button class="wd-filter-btn" data-cat="business"><span class="fbi">🏢</span> Business</button>
+    <button class="wd-filter-btn" data-cat="portfolio"><span class="fbi">🎨</span> Portfolio</button>
+    <button class="wd-filter-btn" data-cat="blog"><span class="fbi">✍️</span> Blog / Content</button>
+    <button class="wd-filter-btn" data-cat="landing"><span class="fbi">🚀</span> Landing Pages</button>
+    <button class="wd-filter-btn" data-cat="community"><span class="fbi">👥</span> Community</button>
+    <button class="wd-filter-btn" data-cat="restaurant"><span class="fbi">🍽️</span> Restaurant</button>
+    <button class="wd-filter-btn" data-cat="ngo"><span class="fbi">🌱</span> NGO / Nonprofit</button>
+    <button class="wd-filter-btn" data-cat="event"><span class="fbi">🎟️</span> Event / Ticket</button>
+  </div>
+</div>
+
+<!-- ═══════ FEATURED ═══════ -->
+<section class="featured-section container reveal" id="featured-section" aria-label="Featured project">
+  <div class="featured-label">Featured Project</div>
+  <div id="featured-card"></div>
+</section>
+
+<!-- ═══════ GRID ═══════ -->
+<section class="wd-grid-section container" id="wd-grid" aria-label="Website projects grid">
+  <div class="wd-grid" id="wd-grid-el"></div>
+</section>
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="modal-overlay" id="wd-modal" role="dialog" aria-modal="true" aria-labelledby="m-title-text">
+  <div class="modal-box">
+    <div class="modal-close">
+      <button class="modal-close-btn" id="wd-modal-close" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-content" id="wd-modal-content"></div>
+  </div>
+</div>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="wd-cta container">
+  <div class="wd-cta-box reveal-s">
+    <div class="wd-cta-blob"></div>
+    <div class="wd-cta-grid"></div>
+    <div class="wd-cta-inner">
+      <div class="section-tag" style="justify-content:center;color:var(--accent-2)">
+        <span style="background:var(--accent-2);display:block;width:26px;height:1px"></span>
+        Ready to Build?
+      </div>
+      <h2>Your website,<br><em>reimagined.</em></h2>
+      <p>We design and develop websites that look world-class, load fast, and convert visitors into fans. Let's talk about your vision.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="https://www.instagram.com/nexovrastudios"
+           class="btn-primary lg" style="background:var(--accent-2);color:#06060f;box-shadow:0 4px 24px rgba(76,201,240,0.35)">
+          Start Your Website
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#wd-grid" class="btn-ghost" data-filter-jump="portfolio">Full Portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════ APPS / COMING SOON ═══════ -->
+<section class="nx-mini-section container reveal-s" id="apps" aria-label="Apps coming soon">
+  <div class="nx-mini-card">
+    <div class="section-tag" style="color:var(--accent-2)">
+      <span style="background:var(--accent-2);display:block;width:26px;height:1px"></span>
+      Apps Coming Soon
+    </div>
+    <h2>NexStream Studio, NexBrand AI, NexEmote.</h2>
+    <p>Apps page ab broken nahi hai. Human civilization may still be, but at least yeh button kaam karega. 😌</p>
+    <button type="button" class="btn-primary" id="open-coming-popup">Preview Update</button>
+  </div>
+</section>
+
+
+<!-- COMING SOON POPUP -->
+<div id="nxComingSoonPopup" aria-hidden="true">
+  <div class="nx-coming-card" role="dialog" aria-modal="true" aria-labelledby="nx-coming-title">
+    <button class="nx-coming-close" type="button" aria-label="Close coming soon popup">×</button>
+    <div class="nx-coming-star" aria-hidden="true">✦</div>
+    <div class="nx-coming-tag">Nexovra Apps</div>
+    <h2 class="nx-coming-title" id="nx-coming-title">Coming Soon</h2>
+    <p class="nx-coming-text">Apps section is in maintenance mode. Update preview is ready and the full apps page can be connected later.</p>
+    <button class="nx-coming-btn" type="button">Dismiss</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="nav-logo">
+          <span class="logo-mark" aria-hidden="true">N</span>
+          <span class="logo-text">Nexovra Studios</span>
+        </a>
+        <p>Crafting logos, overlays, branding & web experiences for modern creators since 2017.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#wd-grid">Logo Design</a>
+        <a href="#wd-grid">Banners</a>
+        <a href="#wd-grid" data-filter-jump="all">Web Dev</a>
+        <a href="#wd-grid">Overlays</a>
+        <a href="#wd-grid">Animations</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="#top">Home</a>
+        <a href="#wd-grid" data-filter-jump="portfolio">Portfolio</a>
+        <a href="#wd-grid" data-filter-jump="all">Web Dev</a>
+        <a href="#apps">Apps</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/17kjQojSUK/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.linkedin.com/company/shariqindustries/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/nexovrastudios" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2017–2026 Nexovra Studios. All rights reserved.</p>
+      <div class="social-row">
+        <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">IG</a>
+        <a href="https://x.com/nexovrastudios" target="_blank" rel="noopener" class="social-btn" aria-label="X">𝕏</a>
+        <a href="https://www.linkedin.com/company/shariqindustries/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">in</a>
+        <a href="https://www.facebook.com/share/17kjQojSUK/" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">fb</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+/* ═══════════════════════════════════════
+   WEB DEV PROJECT DATA — 24 Projects
+═══════════════════════════════════════ */
+const wdProjects = [
+
+  /* ── GAMING ── */
+  {
+    id:'w1', cat:'gaming', featured:true,
+    type:'Gaming Platform', title:'Apex Gaming Hub',
+    desc:'Full-featured esports community platform with live tournament brackets, real-time leaderboards, team management, and Discord integration.',
+    thumb:'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=85',
+    icon:'🕹️', accentClr:'#f72585', accentRgb:'247,37,133',
+    badgeTxt:'Gaming', complexity:3,
+    stack:['React 18','Node.js','MongoDB','Socket.io','Tailwind'],
+    purpose:'Central esports hub for competitive gaming communities to organize, compete, and grow.',
+    usedFor:'Esports orgs, gaming clans, LAN event organizers, competitive communities.',
+    industry:'Gaming & Esports',
+    projectType:'Web Application + Community Platform',
+    deliveryTime:'6 weeks',
+    pages:'12+',
+    features:['Live tournament brackets (single/double elim)','Real-time leaderboards with ELO','Player profiles & match history','Team roster management','Discord OAuth login','Clip showcase gallery','Admin match management panel','Mobile-responsive scoreboard'],
+    perf:97, seo:94, mobile:98
+  },
+  {
+    id:'w2', cat:'gaming',
+    type:'Game Studio Site', title:'NebulaCraft Interactive',
+    desc:'Cinematic game studio website with animated parallax reveals, trailer embeds, and a dev-blog CMS for an indie RPG studio.',
+    thumb:'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80',
+    icon:'🌌', accentClr:'#4cc9f0', accentRgb:'76,201,240',
+    badgeTxt:'Gaming', complexity:2,
+    stack:['Nuxt 3','GSAP','Three.js','Sanity CMS','Netlify'],
+    purpose:'Establish a world-class online presence for an indie game studio pre-launch.',
+    usedFor:'Game studios, indie developers, game jam teams.',
+    industry:'Indie Game Development',
+    projectType:'Marketing + Content Site',
+    deliveryTime:'4 weeks',
+    pages:'8',
+    features:['Cinematic scroll parallax','Embedded trailer with custom player','Dev-blog with CMS','Roadmap timeline','Email wishlist capture','Press/media kit page','Team page with bios','Steam Wishlist integration'],
+    perf:99, seo:97, mobile:99
+  },
+  {
+    id:'w3', cat:'gaming',
+    type:'Streamer Website', title:'VortexArena Stream Hub',
+    desc:'Personal streamer website with live stream embed, schedule calendar, VOD gallery, merch store, and donation goals.',
+    thumb:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=80',
+    icon:'⚡', accentClr:'#f77f00', accentRgb:'247,127,0',
+    badgeTxt:'Gaming', complexity:2,
+    stack:['Next.js','Twitch API','Stripe','Vercel','Prisma'],
+    purpose:'Give a top streamer a professional home base outside of Twitch.',
+    usedFor:'Twitch streamers, YouTube gaming creators, content creators.',
+    industry:'Content Creation',
+    projectType:'Creator Hub + Micro-Store',
+    deliveryTime:'3 weeks',
+    pages:'6',
+    features:['Live stream embed (Twitch/YouTube)','Stream schedule with calendar','VOD archive gallery','Merch store with Stripe','Donation goals widget','Community Discord link wall','Fan art showcase','Subscriber perks page'],
+    perf:96, seo:92, mobile:97
+  },
+
+  /* ── E-COMMERCE ── */
+  {
+    id:'w4', cat:'ecommerce',
+    type:'Luxury E-Commerce', title:'LuxeCommerce Store',
+    desc:'Premium fashion e-commerce with immersive 3D product previews, AR try-on, one-click checkout, and a fully custom CMS.',
+    thumb:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+    icon:'🛍️', accentClr:'#ffd166', accentRgb:'255,209,102',
+    badgeTxt:'E-Commerce', complexity:3,
+    stack:['Next.js','Three.js','Stripe','Supabase','Framer Motion'],
+    purpose:'Redefine online luxury retail with immersive product experiences.',
+    usedFor:'Luxury fashion brands, designer goods, premium accessories.',
+    industry:'Fashion & Retail',
+    projectType:'E-Commerce + 3D Showcase',
+    deliveryTime:'8 weeks',
+    pages:'15+',
+    features:['3D product model viewer','AR try-on (WebXR)','Smart wishlist & saved looks','Advanced size guide','One-click Stripe checkout','Review system with photos','Real-time inventory sync','Abandoned cart email flows'],
+    perf:94, seo:96, mobile:95
+  },
+  {
+    id:'w5', cat:'ecommerce',
+    type:'Merch Store', title:'CreatorMerch Pro',
+    desc:'Turnkey creator merchandise store with print-on-demand fulfillment, discount codes, and subscriber-only product unlocks.',
+    thumb:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
+    icon:'👕', accentClr:'#f72585', accentRgb:'247,37,133',
+    badgeTxt:'E-Commerce', complexity:2,
+    stack:['Shopify','Printful','Liquid','Klaviyo','Judge.me'],
+    purpose:'Allow content creators to monetize their audience with custom merch effortlessly.',
+    usedFor:'Streamers, YouTubers, TikTokers, musicians, podcasters.',
+    industry:'Creator Economy',
+    projectType:'Shopify Merch Store',
+    deliveryTime:'2 weeks',
+    pages:'10',
+    features:['Printful POD integration','Subscriber-exclusive products','Discount code system','Abandoned cart recovery','UGC photo reviews','Bundle builder','Size chart modal','Order tracking page'],
+    perf:92, seo:90, mobile:96
+  },
+  {
+    id:'w6', cat:'ecommerce',
+    type:'Digital Products Store', title:'PixelVault Downloads',
+    desc:'Digital asset marketplace for game assets, templates, fonts, and presets with instant delivery and license management.',
+    thumb:'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80',
+    icon:'💾', accentClr:'#7209b7', accentRgb:'114,9,183',
+    badgeTxt:'E-Commerce', complexity:2,
+    stack:['Next.js','Lemon Squeezy','Supabase','Algolia','Cloudflare R2'],
+    purpose:'Create a professional marketplace for selling digital creative assets.',
+    usedFor:'Designers, game devs, motion artists, preset packs, UI kits.',
+    industry:'Digital Assets',
+    projectType:'Marketplace + License Portal',
+    deliveryTime:'4 weeks',
+    pages:'9',
+    features:['Instant download delivery','License key management','Search & filtering','Preview before purchase','Bundle discounts','Affiliate program','Creator dashboard','Revenue analytics'],
+    perf:98, seo:95, mobile:97
+  },
+
+  /* ── SaaS / DASHBOARDS ── */
+  {
+    id:'w7', cat:'saas',
+    type:'Analytics Dashboard', title:'StreamerHQ Dashboard',
+    desc:'Multi-platform creator analytics SaaS aggregating Twitch, YouTube, and TikTok data with AI growth insights.',
+    thumb:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    icon:'📊', accentClr:'#4cc9f0', accentRgb:'76,201,240',
+    badgeTxt:'SaaS', complexity:3,
+    stack:['Vue 3','FastAPI','PostgreSQL','Chart.js','Redis'],
+    purpose:'Give creators a unified view of their audience across all major platforms.',
+    usedFor:'Multi-platform streamers, YouTube creators, TikTok influencers.',
+    industry:'Creator Tools / SaaS',
+    projectType:'SaaS Web Application',
+    deliveryTime:'10 weeks',
+    pages:'20+',
+    features:['Cross-platform data aggregation','Revenue & sponsorship tracking','Audience demographic maps','Best-time-to-stream AI','Clip performance tracker','Growth milestone alerts','Team member accounts','CSV/PDF export'],
+    perf:95, seo:88, mobile:93
+  },
+  {
+    id:'w8', cat:'saas',
+    type:'Project Management', title:'FlowDesk PM Tool',
+    desc:'Minimalist project management SaaS for creative agencies with Kanban boards, time tracking, and client portals.',
+    thumb:'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80',
+    icon:'📋', accentClr:'#06d6a0', accentRgb:'6,214,160',
+    badgeTxt:'SaaS', complexity:3,
+    stack:['React','Supabase','Drizzle ORM','Tailwind','Vercel'],
+    purpose:'Replace bloated PM tools with a focused, beautiful experience built for agencies.',
+    usedFor:'Creative studios, design agencies, freelancers, dev shops.',
+    industry:'Productivity / SaaS',
+    projectType:'B2B SaaS Platform',
+    deliveryTime:'12 weeks',
+    pages:'25+',
+    features:['Drag-and-drop Kanban','Time tracking with reports','Client feedback portal','File sharing with version control','Invoice generation','Slack & email notifications','Role-based permissions','Mobile PWA'],
+    perf:93, seo:85, mobile:91
+  },
+  {
+    id:'w9', cat:'saas',
+    type:'Booking Platform', title:'BookNow Studio',
+    desc:'Online booking and scheduling SaaS for creative studios, photographers, and coaches with payment integration.',
+    thumb:'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&q=80',
+    icon:'📅', accentClr:'#f77f00', accentRgb:'247,127,0',
+    badgeTxt:'SaaS', complexity:2,
+    stack:['Next.js','Stripe','Cal.com API','PostgreSQL','SendGrid'],
+    purpose:'Let creative professionals accept bookings and payments online without friction.',
+    usedFor:'Photographers, videographers, coaches, music studios, tattoo artists.',
+    industry:'Service Booking',
+    projectType:'SaaS + Client Portal',
+    deliveryTime:'5 weeks',
+    pages:'12',
+    features:['Visual calendar booking','Stripe payment capture','Email/SMS reminders','Service & pricing pages','Availability blocking','Client intake forms','Review collection','Analytics overview'],
+    perf:97, seo:93, mobile:98
+  },
+
+  /* ── BUSINESS ── */
+  {
+    id:'w10', cat:'business',
+    type:'Agency Website', title:'AgencyPulse Creative',
+    desc:'Award-winning creative agency website with immersive scroll animations, case study reveals, and a content CMS.',
+    thumb:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+    icon:'🏢', accentClr:'#06d6a0', accentRgb:'6,214,160',
+    badgeTxt:'Business', complexity:2,
+    stack:['Nuxt 3','GSAP','Lottie','Sanity CMS','Vercel'],
+    purpose:'Position a design agency as the premium choice for brand-building clients.',
+    usedFor:'Creative agencies, branding studios, marketing firms.',
+    industry:'Creative Services',
+    projectType:'Corporate Marketing Site',
+    deliveryTime:'5 weeks',
+    pages:'10',
+    features:['Animated case study reveals','Filterable work showcase','Team bios with hover effects','Press & awards page','Blog with tag filtering','Project intake contact form','Multi-language support','Speed-optimised images'],
+    perf:99, seo:98, mobile:99
+  },
+  {
+    id:'w11', cat:'business',
+    type:'Law Firm Website', title:'LexaPro Law Partners',
+    desc:'Professional, trust-building law firm website with practice area pages, attorney profiles, and a live chat integration.',
+    thumb:'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800&q=80',
+    icon:'⚖️', accentClr:'#ffd166', accentRgb:'255,209,102',
+    badgeTxt:'Business', complexity:1,
+    stack:['WordPress','Elementor Pro','WPForms','Intercom','Cloudflare'],
+    purpose:'Build trust and generate qualified leads for a law practice online.',
+    usedFor:'Law firms, legal consultants, solicitors, corporate legal teams.',
+    industry:'Legal Services',
+    projectType:'Corporate Brochure Site',
+    deliveryTime:'3 weeks',
+    pages:'14',
+    features:['Practice area landing pages','Attorney profile cards','Live chat widget','Free consultation booking','Secure client portal login','Blog & legal insights','ADA compliance','Local SEO optimized'],
+    perf:95, seo:97, mobile:96
+  },
+  {
+    id:'w12', cat:'business',
+    type:'Real Estate Site', title:'NovaRealty Properties',
+    desc:'Modern real estate website with interactive map search, MLS listings integration, virtual tours, and mortgage calculator.',
+    thumb:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80',
+    icon:'🏡', accentClr:'#4cc9f0', accentRgb:'76,201,240',
+    badgeTxt:'Business', complexity:2,
+    stack:['Next.js','Mapbox','MLS API','Prisma','Vercel'],
+    purpose:'Create a modern property discovery experience that generates quality leads.',
+    usedFor:'Real estate agencies, independent brokers, property developers.',
+    industry:'Real Estate',
+    projectType:'Property Listing Platform',
+    deliveryTime:'6 weeks',
+    pages:'16',
+    features:['Interactive Mapbox property search','MLS/IDX integration','Virtual tour embeds','Mortgage calculator','Neighbourhood guides','Agent profiles','Save favourites (logged in)','Market stats dashboard'],
+    perf:93, seo:96, mobile:95
+  },
+
+  /* ── PORTFOLIO ── */
+  {
+    id:'w13', cat:'portfolio',
+    type:'Creative Portfolio', title:'PortfolioX Designer Hub',
+    desc:'Minimal, CMS-powered portfolio for creatives. Drag-and-drop builder, password-protected case studies, and PDF resume export.',
+    thumb:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+    icon:'🎨', accentClr:'#7209b7', accentRgb:'114,9,183',
+    badgeTxt:'Portfolio', complexity:2,
+    stack:['Gatsby','Contentful','GSAP','Netlify','Cloudinary'],
+    purpose:'Let designers showcase work beautifully without needing to code.',
+    usedFor:'Graphic designers, UX/UI designers, illustrators, architects, photographers.',
+    industry:'Creative Professionals',
+    projectType:'Portfolio CMS Platform',
+    deliveryTime:'3 weeks',
+    pages:'8',
+    features:['Drag-and-drop project builder','Password-protected case studies','Client testimonials module','Custom domain mapping','PDF resume generator','Analytics dashboard','Dark/light mode','Contact with file upload'],
+    perf:98, seo:95, mobile:99
+  },
+  {
+    id:'w14', cat:'portfolio',
+    type:'Photography Portfolio', title:'LensArt Photography',
+    desc:'Cinematic photography portfolio with full-screen gallery, EXIF data display, print store, and client proof galleries.',
+    thumb:'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&q=80',
+    icon:'📷', accentClr:'#f72585', accentRgb:'247,37,133',
+    badgeTxt:'Portfolio', complexity:2,
+    stack:['Astro','Cloudinary','Stripe','Framer Motion','Vercel'],
+    purpose:'Build a stunning showcase that turns site visitors into paying clients.',
+    usedFor:'Wedding photographers, portrait artists, commercial photographers.',
+    industry:'Photography',
+    projectType:'Portfolio + Print Store',
+    deliveryTime:'3 weeks',
+    pages:'9',
+    features:['Full-screen masonry gallery','EXIF data lightbox','Client proof galleries (password)','Print-on-demand store','Booking inquiry form','Before/after sliders','Blog for shoots','Instagram feed embed'],
+    perf:97, seo:94, mobile:98
+  },
+  {
+    id:'w15', cat:'portfolio',
+    type:'Motion Design Reel', title:'KineticArts Motion',
+    desc:'Portfolio site for a motion designer with video reel hero, project case studies, and an interactive skills timeline.',
+    thumb:'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&q=80',
+    icon:'🎬', accentClr:'#f77f00', accentRgb:'247,127,0',
+    badgeTxt:'Portfolio', complexity:2,
+    stack:['Vue 3','Vimeo API','GSAP','Lottie','GitHub Pages'],
+    purpose:'Make a motion designer instantly hireable through an immersive online reel experience.',
+    usedFor:'Motion designers, animators, VFX artists, video editors.',
+    industry:'Motion Design',
+    projectType:'Portfolio / Reel Showcase',
+    deliveryTime:'2 weeks',
+    pages:'6',
+    features:['Autoplay reel hero section','Vimeo project embeds','Interactive skills timeline','Client logo wall','Case study breakdowns','Showreel download PDF','Testimonials slider','Contact & rate inquiry'],
+    perf:96, seo:91, mobile:95
+  },
+
+  /* ── BLOG / CONTENT ── */
+  {
+    id:'w16', cat:'blog',
+    type:'Media Publication', title:'ThePixelPost Magazine',
+    desc:'Online gaming and tech magazine with editorial layout, subscriber newsletter, writers dashboard, and ad management.',
+    thumb:'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
+    icon:'📰', accentClr:'#f72585', accentRgb:'247,37,133',
+    badgeTxt:'Blog', complexity:2,
+    stack:['Ghost CMS','Next.js','Mailchimp','Cloudflare','Stripe'],
+    purpose:'Launch a professional online publication with monetization from day one.',
+    usedFor:'Gaming media, tech blogs, niche publications, independent journalists.',
+    industry:'Digital Media',
+    projectType:'Editorial Publication',
+    deliveryTime:'4 weeks',
+    pages:'12+',
+    features:['Editorial grid layout','Tag & category filtering','Email newsletter subscribe','Paywall for premium content','Writer profiles','Comment system','Dark/light reader mode','Ad slot management'],
+    perf:97, seo:99, mobile:98
+  },
+  {
+    id:'w17', cat:'blog',
+    type:'Personal Blog', title:'DeepDive Tech Blog',
+    desc:'Minimal developer blog with code syntax highlighting, dark/light mode, newsletter integration, and reading time estimates.',
+    thumb:'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80',
+    icon:'✍️', accentClr:'#06d6a0', accentRgb:'6,214,160',
+    badgeTxt:'Blog', complexity:1,
+    stack:['Astro','MDX','Tailwind','Buttondown','Vercel'],
+    purpose:'Give a developer a fast, clean personal site that ranks well and looks great.',
+    usedFor:'Developer blogs, indie hackers, tech writers, side project showcases.',
+    industry:'Developer / IndieHacker',
+    projectType:'Personal Blog + Newsletter',
+    deliveryTime:'1 week',
+    pages:'5',
+    features:['Syntax highlighted code blocks','Reading time estimates','Table of contents sidebar','Dark/light mode toggle','Tag-based article filtering','Newsletter subscribe (Buttondown)','RSS feed','Open Graph social cards'],
+    perf:100, seo:99, mobile:100
+  },
+
+  /* ── LANDING PAGES ── */
+  {
+    id:'w18', cat:'landing',
+    type:'Product Launch Page', title:'LaunchPad SaaS Landing',
+    desc:'High-converting SaaS product launch page with animated feature sections, pricing tables, FAQs, and early-access waitlist.',
+    thumb:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+    icon:'🚀', accentClr:'#4cc9f0', accentRgb:'76,201,240',
+    badgeTxt:'Landing', complexity:1,
+    stack:['Next.js','Framer Motion','Airtable','Resend','Vercel'],
+    purpose:'Capture early adopter leads and validate a SaaS product before launch.',
+    usedFor:'SaaS startups, app launches, product hunt drops, indie hackers.',
+    industry:'Startups / SaaS',
+    projectType:'Conversion Landing Page',
+    deliveryTime:'1 week',
+    pages:'1',
+    features:['Animated hero with product mockup','Feature highlights with icons','Pricing tiers comparison table','FAQ accordion','Social proof counters','Waitlist email capture','Confetti on submit 🎉','OG image for social sharing'],
+    perf:100, seo:96, mobile:99
+  },
+  {
+    id:'w19', cat:'landing',
+    type:'Event Landing Page', title:'NexCon 2026 Event',
+    desc:'Gaming convention landing page with countdown timer, speaker lineup, sponsor tiers, and ticket purchase integration.',
+    thumb:'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    icon:'🎟️', accentClr:'#f72585', accentRgb:'247,37,133',
+    badgeTxt:'Landing', complexity:1,
+    stack:['Astro','Stripe','Lottie','Cloudflare Pages'],
+    purpose:'Drive ticket sales and build hype for a gaming convention.',
+    usedFor:'Gaming events, esports tournaments, tech conferences, fan conventions.',
+    industry:'Events',
+    projectType:'Event Marketing Page',
+    deliveryTime:'1 week',
+    pages:'1',
+    features:['Live countdown timer','Speaker/guest lineup cards','Schedule / agenda section','Ticket tiers with Stripe','Sponsor logo wall','FAQ accordion','Newsletter pre-register','Social share toolkit'],
+    perf:99, seo:95, mobile:98
+  },
+
+  /* ── COMMUNITY ── */
+  {
+    id:'w20', cat:'community',
+    type:'Fan Community', title:'FanVault Community Hub',
+    desc:'Fan community platform with forums, content submissions, ranked fan art, polls, and creator spotlight features.',
+    thumb:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+    icon:'👥', accentClr:'#7209b7', accentRgb:'114,9,183',
+    badgeTxt:'Community', complexity:3,
+    stack:['Next.js','Supabase','Realtime DB','Cloudinary','Vercel'],
+    purpose:'Build a dedicated home for a passionate fan community around a creator or franchise.',
+    usedFor:'Fan communities, creator fan sites, franchise hubs, anime fan sites.',
+    industry:'Community / Fandom',
+    projectType:'Community Platform',
+    deliveryTime:'8 weeks',
+    pages:'18+',
+    features:['Forum with nested threads','Fan art gallery with voting','Weekly polls & quizzes','Creator spotlights','Achievement badges','User profile cards','Real-time chat rooms','Moderation dashboard'],
+    perf:91, seo:88, mobile:93
+  },
+
+  /* ── RESTAURANT ── */
+  {
+    id:'w21', cat:'restaurant',
+    type:'Restaurant Website', title:'Ember & Oak Bistro',
+    desc:'Elegant restaurant website with interactive menu, online reservation system, chef story pages, and review integration.',
+    thumb:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    icon:'🍽️', accentClr:'#ffd166', accentRgb:'255,209,102',
+    badgeTxt:'Restaurant', complexity:1,
+    stack:['WordPress','OpenTable API','WPForms','Cloudflare','Rank Math'],
+    purpose:'Drive reservations and communicate brand story for a premium dining experience.',
+    usedFor:'Fine dining restaurants, casual bistros, cafés, food trucks, catering.',
+    industry:'Hospitality',
+    projectType:'Restaurant Brochure + Booking',
+    deliveryTime:'2 weeks',
+    pages:'8',
+    features:['Visual interactive menu','OpenTable reservation widget','Private dining inquiry form','Chef & story pages','Photo gallery with lazy load','Google Reviews embed','Gift card purchase','Local SEO schema markup'],
+    perf:96, seo:97, mobile:98
+  },
+
+  /* ── NGO ── */
+  {
+    id:'w22', cat:'ngo',
+    type:'Nonprofit Website', title:'GreenLeaf Foundation',
+    desc:'Impact-first nonprofit website with donation processing, campaign pages, volunteer sign-up, and annual impact reports.',
+    thumb:'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80',
+    icon:'🌱', accentClr:'#06d6a0', accentRgb:'6,214,160',
+    badgeTxt:'NGO', complexity:2,
+    stack:['WordPress','GiveWP','Elementor','Stripe','Mailchimp'],
+    purpose:'Maximise donations and volunteer engagement for an environmental nonprofit.',
+    usedFor:'NGOs, charities, foundations, environmental orgs, social enterprises.',
+    industry:'Nonprofit / Social Impact',
+    projectType:'Nonprofit Fundraising Site',
+    deliveryTime:'3 weeks',
+    pages:'12',
+    features:['Stripe donation with recurring','Campaign fundraising meters','Volunteer sign-up forms','Impact statistics counters','Annual report PDF viewer','Blog & news section','Social media feed embed','Multilingual (EN/UR)'],
+    perf:95, seo:96, mobile:97
+  },
+
+  /* ── EVENT ── */
+  {
+    id:'w23', cat:'event',
+    type:'Music Event Site', title:'SoundWave Festival 2026',
+    desc:'Festival website with artist lineups, stage schedules, ticket purchasing, campsite maps, and live social feeds.',
+    thumb:'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&q=80',
+    icon:'🎵', accentClr:'#f72585', accentRgb:'247,37,133',
+    badgeTxt:'Event', complexity:2,
+    stack:['Next.js','Ticket Tailor','Mapbox','Cloudflare','Framer Motion'],
+    purpose:'Sell festival tickets, inform attendees, and build pre-event excitement.',
+    usedFor:'Music festivals, concert series, outdoor events, fan conventions.',
+    industry:'Live Entertainment',
+    projectType:'Event Marketing + Ticketing',
+    deliveryTime:'3 weeks',
+    pages:'10',
+    features:['Animated artist lineup grid','Stage schedule (day-by-day)','Ticket Tailor checkout integration','Interactive campsite map','FAQ accordion','Sponsor branding section','Countdown timer','Live social feed wall'],
+    perf:97, seo:94, mobile:96
+  },
+  {
+    id:'w24', cat:'event',
+    type:'Wedding Website', title:'Forever & Co. Weddings',
+    desc:'Elegant wedding venue website with package showcases, real wedding galleries, availability calendar, and inquiry forms.',
+    thumb:'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    icon:'💍', accentClr:'#ffd166', accentRgb:'255,209,102',
+    badgeTxt:'Event', complexity:1,
+    stack:['WordPress','Divi Builder','Calendly','WPForms','Cloudflare'],
+    purpose:'Attract high-end couples and showcase a wedding venue as the ultimate setting.',
+    usedFor:'Wedding venues, wedding planners, caterers, event spaces.',
+    industry:'Weddings & Events',
+    projectType:'Wedding Venue Showcase',
+    deliveryTime:'2 weeks',
+    pages:'9',
+    features:['Real wedding photo galleries','Package & pricing comparison','Availability calendar (Calendly)','Couple testimonials','Virtual venue tour embed','FAQ section','Inquiry form with file upload','Local SEO schema'],
+    perf:95, seo:97, mobile:97
+  },
+];
+
+/* ── BADGE COLOR ── */
+function badgeStyle(rgb) {
+  return `background:rgba(${rgb},0.15);border:1px solid rgba(${rgb},0.3);color:rgb(${rgb})`;
+}
+
+/* ── COMPLEXITY BARS ── */
+function complexityBars(n) {
+  return [1,2,3].map(i=>`<div class="cb${i<=n?' filled':''}"></div>`).join('');
+}
+
+/* ── RENDER FEATURED ── */
+function renderFeatured(project) {
+  if (!project) { document.getElementById('featured-section').style.display='none'; return; }
+  const p = project;
+  document.getElementById('featured-card').innerHTML = `
+    <div class="featured-card reveal" tabindex="0" role="button"
+      aria-label="View ${p.title} project details"
+      onclick="openModal('${p.id}')"
+      onkeydown="if(event.key==='Enter'||event.key===' ')openModal('${p.id}')">
+      <div class="fc-img-wrap">
+        ${p.thumb
+          ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy">`
+          : `<div style="width:100%;height:100%;background:${p.color||'var(--surface-2)'};display:flex;align-items:center;justify-content:center;font-size:5rem">${p.icon}</div>`
+        }
+        <div class="fc-img-overlay"></div>
+        <div class="fc-badge-strip">
+          <span class="fc-badge" style="${badgeStyle(p.accentRgb)}">⭐ Featured</span>
+          <span class="fc-badge" style="${badgeStyle(p.accentRgb)}">${p.badgeTxt}</span>
+        </div>
+      </div>
+      <div class="fc-body">
+        <div class="fc-cat" style="color:${p.accentClr}">${p.type}</div>
+        <div class="fc-title">${p.title}</div>
+        <p class="fc-desc">${p.desc}</p>
+        <div class="fc-stack">${p.stack.map(s=>`<span class="fc-tech">${s}</span>`).join('')}</div>
+        <div class="fc-meta-row">
+          <div class="fc-meta-item"><span class="fc-meta-icon">🏭</span>${p.industry}</div>
+          <div class="fc-meta-item"><span class="fc-meta-icon">⏱</span>${p.deliveryTime}</div>
+          <div class="fc-meta-item"><span class="fc-meta-icon">📄</span>${p.pages} pages</div>
+        </div>
+        <div class="fc-actions">
+          <span class="view-btn">View Full Details →</span>
+          <span class="btn-ghost">See More Like This</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ── RENDER GRID ── */
+function renderGrid(projects) {
+  const el = document.getElementById('wd-grid-el');
+  if (!projects.length) {
+    el.innerHTML = `<div class="no-results"><div class="nr-ico">🔍</div><p>No projects in this category yet — more coming soon!</p></div>`;
+    return;
+  }
+  el.innerHTML = projects.map(p => `
+    <article class="wd-card reveal" tabindex="0" role="button"
+      aria-label="View ${p.title} project details"
+      onclick="openModal('${p.id}')"
+      onkeydown="if(event.key==='Enter'||event.key===' ')openModal('${p.id}')">
+      <div class="wd-thumb">
+        ${p.thumb
+          ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy">`
+          : `<div class="wd-thumb-fallback" style="background:linear-gradient(135deg,rgba(${p.accentRgb},0.3),var(--surface))">${p.icon}</div>`
+        }
+        <div class="wd-thumb-overlay"><div class="wd-overlay-text">View Details →</div></div>
+        <div class="wd-cat-badge" style="${badgeStyle(p.accentRgb)}">${p.badgeTxt}</div>
+        <div class="wd-live-dot"><div class="ld-pulse"></div>Live</div>
+      </div>
+      <div class="wd-meta">
+        <div class="wd-type" style="color:${p.accentClr}">${p.type}</div>
+        <div class="wd-title">${p.title}</div>
+        <p class="wd-desc">${p.desc}</p>
+        <div class="wd-stack">${p.stack.slice(0,3).map(s=>`<span>${s}</span>`).join('')}${p.stack.length>3?`<span>+${p.stack.length-3} more</span>`:''}</div>
+        <div class="wd-footer">
+          <div class="wd-complexity">
+            <span>Complexity</span>
+            <div class="complexity-bars">${complexityBars(p.complexity)}</div>
+          </div>
+          <div class="wd-arrow">↗</div>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+  /* reinit reveal */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => {
+      if (e.isIntersecting) {
+        setTimeout(()=>e.target.classList.add('vis'), i*50);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.06 });
+  el.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+/* ── FILTER ── */
+function applyFilter(cat) {
+  const isAll = cat === 'all';
+  const featuredProject = isAll
+    ? wdProjects.find(p=>p.featured)
+    : wdProjects.find(p=>p.cat===cat && p.featured);
+  const gridProjects = isAll
+    ? wdProjects.filter(p=>!p.featured)
+    : wdProjects.filter(p=>p.cat===cat && !p.featured);
+
+  const fsec = document.getElementById('featured-section');
+  if (featuredProject) {
+    fsec.style.display = '';
+    renderFeatured(featuredProject);
+  } else {
+    fsec.style.display = 'none';
+  }
+  renderGrid(isAll
+    ? wdProjects.filter(p=>!p.featured)
+    : wdProjects.filter(p=>p.cat===cat)
+  );
+}
+
+document.querySelectorAll('.wd-filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.wd-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(btn.dataset.cat);
+  });
+});
+
+/* ── MODAL ── */
+function openModal(id) {
+  const p = wdProjects.find(x=>x.id===id);
+  if (!p) return;
+  document.getElementById('wd-modal-content').innerHTML = `
+    ${p.thumb
+      ? `<img class="modal-preview-img" src="${p.thumb}" alt="${p.title}" loading="lazy">`
+      : `<div class="modal-preview-fallback" style="background:linear-gradient(135deg,rgba(${p.accentRgb},0.35),var(--surface))">${p.icon}</div>`
+    }
+    <div class="modal-tag-row">
+      <span class="modal-tag" style="${badgeStyle(p.accentRgb)}">${p.badgeTxt}</span>
+      <span class="modal-tag" style="border-color:var(--border-2);color:var(--text-2)">${p.industry}</span>
+      <span class="modal-tag" style="border-color:var(--border-2);color:var(--text-2)">${p.projectType}</span>
+    </div>
+    <div id="m-title-text" class="m-title">${p.title}</div>
+    <div class="m-type">${p.type}</div>
+
+    <div class="m-score-row">
+      <div class="m-score"><span>⚡ Perf</span><span class="m-score-val">${p.perf}</span></div>
+      <div class="m-score"><span>🔍 SEO</span><span class="m-score-val">${p.seo}</span></div>
+      <div class="m-score"><span>📱 Mobile</span><span class="m-score-val">${p.mobile}</span></div>
+      <div class="m-score"><span>⏱ Delivery</span><span class="m-score-val" style="font-size:1rem;font-family:var(--font-body)">${p.deliveryTime}</span></div>
+      <div class="m-score"><span>📄 Pages</span><span class="m-score-val" style="font-size:1rem;font-family:var(--font-body)">${p.pages}</span></div>
+    </div>
+
+    <div class="m-info-grid">
+      <div class="m-info-box">
+        <h4>Tech Stack</h4>
+        <div class="m-tech-wrap">${p.stack.map(t=>`<span class="m-tech">${t}</span>`).join('')}</div>
+      </div>
+      <div class="m-info-box">
+        <h4>Complexity</h4>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+          <div class="complexity-bars">${complexityBars(p.complexity)}</div>
+          <span style="font-size:0.82rem;color:var(--text-2)">${['','Simple','Intermediate','Complex'][p.complexity]}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-section">
+      <h3>Purpose</h3>
+      <p>${p.purpose}</p>
+    </div>
+    <div class="m-section">
+      <h3>Best Used For</h3>
+      <p>${p.usedFor}</p>
+    </div>
+    <div class="m-section">
+      <h3>Features & Deliverables</h3>
+      <div class="m-features">
+        ${p.features.map(f=>`
+          <div class="m-feat">
+            <div class="mf-check">✓</div>
+            <span>${f}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="m-actions">
+      <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener"
+         class="btn-primary" style="background:var(--accent-2);color:#06060f;box-shadow:0 4px 20px rgba(76,201,240,0.32)">
+        Order This Type
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="btn-ghost" onclick="NxModal.close('wd-modal')">Close</button>
+    </div>`;
+  NxModal.open('wd-modal');
+}
+
+/* ── INIT PAGE-SPECIFIC UI ── */
+(function () {
+  function initProjectPage() {
+    renderFeatured(wdProjects.find((p) => p.featured));
+    renderGrid(wdProjects.filter((p) => !p.featured));
+
+    document.querySelectorAll('[data-filter-jump]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const cat = link.getAttribute('data-filter-jump') || 'all';
+        const btn = document.querySelector(`.wd-filter-btn[data-cat="${cat}"]`);
+        if (btn) {
+          e.preventDefault();
+          btn.click();
+          document.getElementById('wd-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const form = document.getElementById('project-form');
+    const status = document.getElementById('form-status');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      localStorage.setItem('nx-last-project-request', JSON.stringify({ ...data, createdAt: new Date().toISOString() }));
+      if (status) status.textContent = 'Request saved. Message Nexovra on Instagram or email to continue.';
+      form.reset();
+    });
+
+    const popup = document.getElementById('nxComingSoonPopup');
+    const openPopup = document.getElementById('open-coming-popup');
+    const closePopup = () => {
+      popup?.classList.remove('show');
+      popup?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('nx-coming-lock');
+    };
+    const showPopup = () => {
+      popup?.classList.add('show');
+      popup?.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('nx-coming-lock');
+    };
+    openPopup?.addEventListener('click', showPopup);
+    popup?.querySelector('.nx-coming-close')?.addEventListener('click', closePopup);
+    popup?.querySelector('.nx-coming-btn')?.addEventListener('click', closePopup);
+    popup?.addEventListener('click', (e) => { if (e.target === popup) closePopup(); });
+
+    document.getElementById('wd-modal-close')?.addEventListener('click', () => NxModal.close('wd-modal'));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectPage);
+  } else {
+    initProjectPage();
+  }
+})();
+</script>
+</body>
+</html>
+  
