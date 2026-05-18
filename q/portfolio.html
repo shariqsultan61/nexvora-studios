@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Nexovra Studios Portfolio — Browse our logos, overlays, emotes, branding, and website design projects.">
+<title>Portfolio | Nexovra Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ═══════════════ PORTFOLIO PAGE ═══════════════ */
+.page-hero {
+  padding:150px 0 80px; position:relative; overflow:hidden; text-align:center;
+}
+.page-hero-bg { position:absolute; inset:0; pointer-events:none; }
+.ph-grain {
+  position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.022;
+}
+.ph-blob { position:absolute; border-radius:50%; filter:blur(100px); will-change:transform; }
+.ph-b1 { width:520px;height:520px;background:rgba(247,37,133,0.1);top:-180px;left:-100px;animation:bf1 16s ease-in-out infinite alternate; }
+.ph-b2 { width:440px;height:440px;background:rgba(76,201,240,0.07);bottom:-120px;right:-70px;animation:bf2 20s ease-in-out infinite alternate; }
+@keyframes bf1 { to{transform:translate(40px,-50px) scale(1.1) translateZ(0)} }
+@keyframes bf2 { to{transform:translate(-40px,50px) scale(0.9) translateZ(0)} }
+.ph-grid {
+  position:absolute; inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 75% 80% at 50% 50%,black,transparent);
+  opacity:0.4;
+}
+.ph-content { position:relative; z-index:2; }
+.ph-content h1 {
+  font-family:var(--font-display);
+  font-size:clamp(4rem,7.5vw,8rem); letter-spacing:3px; line-height:0.93;
+  margin-bottom:22px; animation:fu 0.9s var(--ease-expo) 0.3s both;
+}
+.ph-content h1 em { font-family:var(--font-serif); font-style:italic; color:var(--accent); font-size:0.88em; letter-spacing:0; }
+.ph-content p {
+  color:var(--text-2); font-size:clamp(0.9rem,1.5vw,1.05rem); line-height:1.85;
+  max-width:520px; margin:0 auto; animation:fu 0.9s var(--ease-expo) 0.5s both;
+}
+@keyframes fu { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+
+/* Filter bar */
+.filter-bar {
+  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
+  padding:40px 0 64px;
+}
+.filter-btn {
+  padding:9px 22px; border:1px solid var(--border-2); border-radius:var(--radius-pill);
+  font-family:var(--font-body); font-size:0.8rem; font-weight:600; color:var(--text-2);
+  transition:border-color 0.28s, color 0.28s, background 0.28s, transform 0.3s var(--ease-spring);
+  will-change:transform;
+}
+.filter-btn:hover { border-color:var(--accent); color:var(--text); background:rgba(247,37,133,0.07); transform:translateY(-2px); }
+.filter-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; box-shadow:0 4px 22px rgba(247,37,133,0.4); }
+
+/* Portfolio grid */
+.portfolio-section { padding:0 0 130px; }
+.port-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:22px; }
+.port-card {
+  border-radius:var(--radius-lg); overflow:hidden;
+  border:1px solid var(--border); background:var(--card-bg);
+  cursor:pointer;
+  transition:transform 0.45s var(--ease-spring), border-color 0.3s, box-shadow 0.4s;
+  will-change:transform;
+}
+.port-card:hover { transform:translateY(-8px); border-color:var(--border-2); box-shadow:var(--shadow-lg); }
+.port-thumb { width:100%; height:215px; position:relative; overflow:hidden; }
+.port-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s var(--ease-expo); will-change:transform; }
+.port-card:hover .port-thumb img { transform:scale(1.07); }
+.port-thumb-fallback {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center; font-size:3rem;
+}
+.port-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(5,5,14,0.8) 0%,transparent 55%);
+  opacity:0; transition:opacity 0.35s;
+  display:flex; align-items:flex-end; padding:18px;
+}
+.port-card:hover .port-overlay { opacity:1; }
+.port-overlay-cta {
+  font-family:var(--font-mono); font-size:0.72rem;
+  color:#fff; text-transform:uppercase; letter-spacing:1.5px;
+  display:flex; align-items:center; gap:7px;
+}
+.port-badge {
+  position:absolute; top:14px; right:14px;
+  padding:5px 13px; border-radius:var(--radius-pill);
+  font-family:var(--font-mono); font-size:0.62rem; font-weight:400;
+  letter-spacing:1.5px; text-transform:uppercase;
+  backdrop-filter:blur(12px);
+}
+.port-meta { padding:22px 24px 24px; }
+.port-type { font-family:var(--font-mono); font-size:0.62rem; letter-spacing:3.5px; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+.port-title { font-family:var(--font-display); font-size:1.4rem; letter-spacing:1.5px; margin-bottom:9px; }
+.port-desc { color:var(--text-2); font-size:0.85rem; line-height:1.7; }
+.port-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:14px; }
+.port-tags span {
+  padding:3px 11px; border-radius:6px; border:1px solid var(--border);
+  font-family:var(--font-mono); font-size:0.62rem; letter-spacing:0.5px; color:var(--text-3);
+}
+
+.empty-state { text-align:center; padding:90px 20px; color:var(--text-3); }
+.empty-state .es-icon { font-size:3.5rem; margin-bottom:18px; }
+.empty-state p { font-family:var(--font-mono); font-size:0.82rem; letter-spacing:1px; }
+
+@media (max-width:768px) {
+  .port-grid { grid-template-columns:1fr; }
+  .modal-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="page-loader" aria-label="Loading" role="status">
+  <div class="pl-inner">
+    <div class="pl-logo">NEX<span>O</span>VRA</div>
+    <div class="pl-bar"><div class="pl-fill"></div></div>
+  </div>
+</div>
+
+<header class="navbar" id="navbar" role="banner">
+  <div class="nav-inner container-wide">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-mark">N</span>
+      <span class="logo-text">Nexovra Studios</span>
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary navigation">
+      <a href="index.html"           class="nav-item">Home</a>
+   
+      
+      <a href="portfolio.html"       class="nav-item active">Portfolio</a>
+     <a href="apps.html"class="nav-item">Web Dev</a> 
+      <a href="https://www.instagram.com/nexovrastudios"   class="nav-item">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme">
+        <div class="tt-knob"><span class="tt-icon">🌙</span></div>
+      </button>
+      <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener" class="nav-cta">Start a Project</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero" aria-label="Portfolio hero">
+  <div class="page-hero-bg">
+    <div class="ph-grain"></div>
+    <div class="ph-blob ph-b1"></div>
+    <div class="ph-blob ph-b2"></div>
+    <div class="ph-grid"></div>
+  </div>
+  <div class="container ph-content">
+    <div class="section-tag" style="justify-content:center">Our Work</div>
+    <h1>Creative <em>Portfolio</em></h1>
+    <p>A curated showcase of logos, overlays, emotes, websites, and branding projects — each one built from scratch with purpose.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="filter-bar" role="group" aria-label="Filter portfolio">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="logo">Logo Design</button>
+    <button class="filter-btn" data-filter="overlay">Overlays</button>
+    <button class="filter-btn" data-filter="emote">Emotes</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="website">Websites</button>
+    <button class="filter-btn" data-filter="animation">Animations</button>
+  </div>
+</div>
+
+<section class="portfolio-section" aria-label="Portfolio grid">
+  <div class="container">
+    <div class="port-grid" id="port-grid"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+  <div class="modal-box">
+    <div class="modal-close">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+    </div>
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-bg-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-mark">N</span>
+          <span class="logo-text">Nexovra Studios</span>
+        </a>
+        <p>Crafting logos, overlays, branding & animations for modern creators since 2017.</p>
+        <div class="footer-badge" style="margin-top:20px">
+          <div class="fb-dot"></div>
+          <span>Open for Projects</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="index.html#services">Logo Design</a>
+        <a href="index.html#services">Banners</a>
+        <a href="index.html#services">Emotes</a>
+        <a href="index.html#services">Overlays</a>
+        <a href="index.html#services">Animations</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="apps.html">Apps</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/share/17kjQojSUK/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.linkedin.com/company/shariqindustries/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/nexovrastudios" target="_blank" rel="noopener">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2017–2026 Nexovra Studios. All rights reserved.</p>
+      <div class="social-row">
+        <a href="https://www.instagram.com/nexovrastudios" target="_blank" rel="noopener" class="social-btn">IG</a>
+        <a href="https://x.com/nexovrastudios" target="_blank" rel="noopener" class="social-btn">𝕏</a>
+        <a href="https://www.linkedin.com/company/shariqindustries/" target="_blank" rel="noopener" class="social-btn">in</a>
+        <a href="https://www.facebook.com/share/17kjQojSUK/" target="_blank" rel="noopener" class="social-btn">fb</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+const projects = [
+  {id:'p1',cat:'logo',type:'Logo Design',title:'PhantomFX Gaming',desc:'Full mascot and wordmark identity for a competitive FPS streamer.',thumb:null,color:'linear-gradient(135deg,#f72585,#7209b7)',icon:'🎮',badgeBg:'rgba(247,37,133,0.15)',badgeColor:'#f72585',badgeText:'Logo',tags:['Mascot','Wordmark','Esports'],project:'Custom mascot logo design built for a competitive FPS gaming channel.',techStack:['Adobe Illustrator','Photoshop','After Effects'],purpose:'Establish a bold, recognizable identity for a Twitch streamer breaking into the competitive FPS scene.',usedFor:'Twitch channel branding, YouTube thumbnails, merch, Discord server.',features:['Full-colour + mono variants','Vector source files','Transparent PNG exports','Brand guidelines sheet','Social media sizing pack']},
+  {id:'p2',cat:'logo',type:'Logo Design',title:'NebulaCraft Studio',desc:'Minimalist emblem logo for an indie game development studio.',thumb:null,color:'linear-gradient(135deg,#4cc9f0,#3a0ca3)',icon:'🌌',badgeBg:'rgba(76,201,240,0.15)',badgeColor:'#4cc9f0',badgeText:'Logo',tags:['Emblem','Minimalist','Studio'],project:'Brand identity for a 3-person indie game studio building a sci-fi RPG.',techStack:['Adobe Illustrator','Figma'],purpose:'Create an otherworldly, professional studio identity that signals creative ambition.',usedFor:'Game credits, website, press kits, app store listings.',features:['Modular icon system','Light & dark versions','Animated logo variant','Icon-only app icon','Style guide']},
+  {id:'p3',cat:'logo',type:'Logo Design',title:'VortexArena',desc:'Dynamic energy logo for a battle royale content creator.',thumb:null,color:'linear-gradient(135deg,#f77f00,#d62828)',icon:'⚡',badgeBg:'rgba(247,127,0,0.15)',badgeColor:'#f77f00',badgeText:'Logo',tags:['Energy','Dynamic','Gaming'],project:'Logo for a high-energy content creator focused on battle royale titles.',techStack:['Adobe Illustrator','Photoshop'],purpose:'Convey speed, intensity, and gaming culture in a single mark.',usedFor:'Stream overlays, YouTube banners, thumbnail watermark, Discord.',features:['Custom typeface modification','Electric bolt icon','Colour palette with HEX codes','Print-ready files','Animated version for alerts']},
+  {id:'p4',cat:'overlay',type:'Stream Overlay',title:'CryoStream Package',desc:'Frozen arctic-themed full stream package with animated elements.',thumb:null,color:'linear-gradient(135deg,#4cc9f0,#0077b6)',icon:'❄️',badgeBg:'rgba(76,201,240,0.15)',badgeColor:'#4cc9f0',badgeText:'Overlay',tags:['Animated','Full Package','Twitch'],project:'Complete stream overlay package with arctic/cryo aesthetic.',techStack:['After Effects','Photoshop','OBS Themes'],purpose:'Provide a cohesive, animated stream environment that reinforces the cryogenic brand.',usedFor:'Twitch and YouTube live streams, OBS, Streamlabs.',features:['In-game overlay layout','Just Chatting scene','Starting/Ending screens','Animated sub/follow alerts','Overlay panels × 6','BRB screen with animation']},
+  {id:'p5',cat:'overlay',type:'Stream Overlay',title:'Inferno Pack',desc:'Fire and molten aesthetics for a high-energy gaming streamer.',thumb:null,color:'linear-gradient(135deg,#f77f00,#d62828)',icon:'🔥',badgeBg:'rgba(247,127,0,0.15)',badgeColor:'#f77f00',badgeText:'Overlay',tags:['Fire Theme','Animated','Full Package'],project:'Fire-themed full stream overlay package with particle animations.',techStack:['After Effects','Photoshop'],purpose:'Create immersive fire aesthetic that amps up viewer energy during streams.',usedFor:'Twitch, Kick, YouTube Live.',features:['Particle fire animations','Webcam border frame','Overlay panels','Alert animations','Offline screen','Schedule graphic']},
+  {id:'p6',cat:'emote',type:'Emote Pack',title:'ChibiCrew Pack',desc:'10-emote chibi character pack for a cozy variety streamer.',thumb:null,color:'linear-gradient(135deg,#06d6a0,#0096c7)',icon:'😄',badgeBg:'rgba(6,214,160,0.15)',badgeColor:'#06d6a0',badgeText:'Emotes',tags:['Chibi','10-Pack','Variety'],project:'Set of 10 custom chibi-style emotes for a cozy Twitch streamer.',techStack:['Photoshop','Procreate','Illustrator'],purpose:'Build community engagement with a set of expressive, unique emotes.',usedFor:'Twitch emote slots, 7TV, BTTV, Discord stickers.',features:['10 unique expressions','All sizes: 28px · 56px · 112px','Transparent backgrounds','Subscriber & non-sub tiers','BTTV/7TV formatted']},
+  {id:'p7',cat:'emote',type:'Emote Pack',title:'PixelPunch Emotes',desc:'Retro pixel-art 8-emote set for a retro gaming streamer.',thumb:null,color:'linear-gradient(135deg,#f72585,#560bad)',icon:'👾',badgeBg:'rgba(247,37,133,0.15)',badgeColor:'#f72585',badgeText:'Emotes',tags:['Pixel Art','8-Pack','Retro'],project:'8-pack pixel art emote set for a retro gaming and nostalgia streamer.',techStack:['Aseprite','Photoshop'],purpose:'Capture the retro gaming spirit in Twitch-ready emote format.',usedFor:'Twitch emote slots, Discord servers, channel point redemptions.',features:['Pixel-perfect 1x/2x/4x scale','Animated blinking versions','Classic 16-colour palette','Press kit ready','Channel point badge set']},
+  {id:'p8',cat:'branding',type:'Full Branding',title:'ZenithBrand Rebrand',desc:'Complete creator rebrand: logo, socials, overlays, banners, emotes.',thumb:null,color:'linear-gradient(135deg,#ffd166,#f77f00)',icon:'✦',badgeBg:'rgba(255,209,102,0.15)',badgeColor:'#ffd166',badgeText:'Branding',tags:['Full Kit','Rebrand','Premium'],project:'End-to-end brand identity overhaul for ZenithPlays content creator.',techStack:['Illustrator','After Effects','Photoshop','Figma'],purpose:'Transform an inconsistent visual identity into a cohesive premium brand.',usedFor:'All platforms: Twitch, YouTube, Instagram, TikTok, merch.',features:['New logo + variants','Brand colour palette + typography guide','5 custom emotes','Full overlay package','Banner templates for all socials','Brand voice guide','Merchandise-ready files']},
+  {id:'p9',cat:'website',type:'Website Design',title:'Apex Gaming Hub',desc:'Full-featured gaming community website with tournament brackets & leaderboards.',thumb:'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80',color:'linear-gradient(135deg,#f72585,#7209b7)',icon:'🕹️',badgeBg:'rgba(247,37,133,0.15)',badgeColor:'#f72585',badgeText:'Gaming',tags:['Gaming','Community','Web App'],project:'Gaming community hub with tournament management and social features.',techStack:['React','Node.js','MongoDB','Socket.io','Tailwind CSS'],purpose:'Central platform for competitive gamers to organize tournaments, track rankings, and build community.',usedFor:'Esports organizations, gaming communities, LAN event organizers.',features:['Live tournament brackets','Real-time leaderboards','Player profiles & stats','Team management system','Discord integration','Match scheduling','Clip showcase gallery']},
+  {id:'p10',cat:'website',type:'Website Design',title:'LuxeCommerce Store',desc:'Premium e-commerce storefront with immersive 3D product previews.',thumb:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',color:'linear-gradient(135deg,#ffd166,#f77f00)',icon:'🛍️',badgeBg:'rgba(255,209,102,0.15)',badgeColor:'#ffd166',badgeText:'E-Commerce',tags:['E-Commerce','3D Preview','Luxury'],project:'Luxury fashion e-commerce platform with 3D product visualization.',techStack:['Next.js','Three.js','Stripe','Supabase','Framer Motion'],purpose:'Redefine online luxury retail with immersive product experiences that drive conversions.',usedFor:'Premium fashion brands, designer goods retailers, luxury accessories.',features:['3D product model viewer','AR try-on feature','Smart wishlist system','Advanced size guide','One-click checkout','Review system with photos','Real-time inventory']},
+  {id:'p11',cat:'website',type:'Website Design',title:'StreamerHQ Dashboard',desc:'Creator analytics SaaS dashboard with real-time audience insights.',thumb:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',color:'linear-gradient(135deg,#4cc9f0,#3a0ca3)',icon:'📊',badgeBg:'rgba(76,201,240,0.15)',badgeColor:'#4cc9f0',badgeText:'SaaS',tags:['SaaS','Dashboard','Analytics'],project:'Creator analytics platform aggregating data from Twitch, YouTube, and TikTok.',techStack:['Vue 3','FastAPI','PostgreSQL','Chart.js','WebSockets'],purpose:'Give content creators a unified view of their audience across all platforms.',usedFor:'Streamers, YouTube creators, TikTok influencers, multi-platform creators.',features:['Cross-platform analytics','Revenue tracking','Audience demographics','Best-time-to-stream AI','Clip performance tracking','Growth milestone notifications','CSV export']},
+  {id:'p14',cat:'animation',type:'Animation Pack',title:'Cyber Alert Pack',desc:'Cyberpunk neon subscriber & donation alerts with glitch transitions.',thumb:null,color:'linear-gradient(135deg,#f72585,#4cc9f0)',icon:'⚡',badgeBg:'rgba(247,37,133,0.15)',badgeColor:'#f72585',badgeText:'Animation',tags:['Alerts','Cyberpunk','Animated'],project:'Animated alert pack with cyberpunk neon aesthetic for stream events.',techStack:['After Effects','OBS','Streamlabs'],purpose:'Make subscriber, follower, and donation events visually unmissable.',usedFor:'Twitch, Kick, YouTube Live stream event notifications.',features:['Sub/follow/donation alerts','Hype train animation','Raid sequence animation','Goal tracker bar','Chat box overlay','Glitch transition stinger','Media share alert']},
+];
+
+function renderCards(filter) {
+  const grid = document.getElementById('port-grid');
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.cat === filter);
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="es-icon">🔍</div><p>No projects in this category yet — check back soon.</p></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(p => `
+    <article class="port-card reveal" tabindex="0" role="button"
+      aria-label="View ${p.title}"
+      onclick="openModal('${p.id}')"
+      onkeydown="if(event.key==='Enter')openModal('${p.id}')">
+      <div class="port-thumb">
+        ${p.thumb
+          ? `<img src="${p.thumb}" alt="${p.title}" loading="lazy">`
+          : `<div class="port-thumb-fallback" style="background:${p.color}">${p.icon}</div>`
+        }
+        <div class="port-overlay"><div class="port-overlay-cta">View Details →</div></div>
+        <div class="port-badge" style="background:${p.badgeBg};color:${p.badgeColor};border:1px solid ${p.badgeColor}33">${p.badgeText}</div>
+      </div>
+      <div class="port-meta">
+        <div class="port-type">${p.type}</div>
+        <h2 class="port-title">${p.title}</h2>
+        <p class="port-desc">${p.desc}</p>
+        <div class="port-tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+      </div>
+    </article>
+  `).join('');
+  const els = grid.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = `${i*0.06}s`;
+        e.target.classList.add('vis');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.06 });
+  els.forEach(el => io.observe(el));
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.filter);
+  });
+});
+
+function openModal(id) {
+  const p = projects.find(x=>x.id===id);
+  if (!p) return;
+  document.getElementById('modal-content').innerHTML = `
+    ${p.thumb
+      ? `<img class="modal-hero-img" src="${p.thumb}" alt="${p.title}">`
+      : `<div class="modal-hero-fallback" style="background:${p.color}">${p.icon}</div>`
+    }
+    <div id="modal-title-text" class="modal-title">${p.title}</div>
+    <div class="modal-type">${p.type}</div>
+    <div class="modal-grid">
+      <div class="modal-info-card">
+        <h4>Technologies</h4>
+        <div class="modal-tech-tags">${p.techStack.map(t=>`<span class="modal-tech-tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="modal-info-card">
+        <h4>Tags</h4>
+        <div class="modal-tech-tags">${p.tags.map(t=>`<span class="modal-tech-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="modal-section"><h3>About</h3><p>${p.project}</p></div>
+    <div class="modal-section"><h3>Purpose</h3><p>${p.purpose}</p></div>
+    <div class="modal-section"><h3>Where It's Used</h3><p>${p.usedFor}</p></div>
+    <div class="modal-section"><h3>Deliverables</h3>
+      <div class="modal-features">${p.features.map(f=>`<div class="modal-feature"><div class="mf-dot"></div><span>${f}</span></div>`).join('')}</div>
+    </div>
+    <div class="modal-actions">
+      <a href="https://www.instagram.com/nexovra_studio" target="_blank" rel="noopener" class="btn-primary">Order Similar Project</a>
+      <button class="btn-ghost" onclick="NxModal.close('project-modal')">Close</button>
+    </div>
+  `;
+  NxModal.open('project-modal');
+}
+
+document.getElementById('modal-close-btn').addEventListener('click', () => NxModal.close('project-modal'));
+renderCards('all');
+</script>
+</body>
+</html>
